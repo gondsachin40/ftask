@@ -6,12 +6,14 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   const userService = inject(User);
   const token = userService.getToken();
 
-  console.log('Interceptor activated');
-  console.log('Token:', token);
-
-  if (token) {
-    document.cookie = `token=${token}; path=/; Secure; HttpOnly`;
-  }
+  // if (token) {
+  //   const clonedReq = req.clone({
+  //     setHeaders: {
+  //         Authorization: `Bearer ${token}`
+  //     }
+  //   });
+  //   return next(re);
+  // }
 
   return next(req);
 };

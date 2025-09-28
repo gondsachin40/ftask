@@ -1,0 +1,16 @@
+<div class="login-container">
+    <form (submit)="onSubmit()" class="login-form">
+        <div class="form-group">
+            <label for="username">username</label>
+            <input type="text" id="username" [(ngModel)]="username" name="username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" [(ngModel)]="password" name="password" required>
+        </div>
+
+        <button type="submit" class="login-btn">Login</button>
+        <button type="button" (click)="goToRegister()">New Register</button>
+    </form>
+</div>

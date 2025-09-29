@@ -1,10 +1,9 @@
-@for(x of tasks; track x){
-<button tuiCardLarge tuiHeader tuiSurface="floating" type="button">
-    <h1 tuiTitle>
-        {{x.taskTitle}}
-        <div tuiSubtitle>{{x.taskDescription}}</div>
-        <p size="s">{{x.createdAtFormatted}}</p>
-    </h1>
-</button>
-
-}
+<div class="card-container">
+  @for (x of tasks; track x) {
+  <div class="task-card" >
+    <h2 class="task-title">{{ x.taskTitle }}</h2>
+    <p class="task-desc">{{ x.taskDescription }}</p>
+    <p class="task-date">{{ x.createdAtFormatted }}</p>
+  </div>
+  }
+</div>

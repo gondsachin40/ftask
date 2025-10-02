@@ -1,0 +1,72 @@
+<form
+  tuiAppearance="floating"
+  tuiCardLarge
+  tuiForm="m"
+  [formGroup]="form"
+  [style.max-width.rem]="32"
+  (ngSubmit)="onSubmit()"
+>
+
+  <header tuiHeader>
+    <h2 tuiTitle>
+      Add Task
+      <span tuiSubtitle>Tell us about yourself</span>
+    </h2>
+  </header>
+  
+  <tui-textfield>
+    <input placeholder="Task Title" tuiTextfield type="text" formControlName="taskTitle" required />
+  </tui-textfield>
+  <tui-error [error]="[] | tuiFieldError | async" />
+
+  <tui-textfield>
+    <input
+      placeholder="Task Description"
+      tuiTextfield
+      type="text"
+      formControlName="taskDescription"
+    />
+  </tui-textfield>
+  <tui-error [error]="[] | tuiFieldError | async" />
+
+  <tui-textfield
+    multi
+    [style.width.rem]="15"
+    [tuiTextfieldCleaner]="false"
+>
+    <input
+        tuiInputChip
+        formControlName="links"
+    />
+    <button
+        appearance="icon"
+        iconStart="@tui.x"
+        size="m"
+        tuiIconButton
+        type="button"
+        (click)="form.get('links')?.setValue(this.links)"
+    >
+        Clear
+    </button>
+    <tui-input-chip *tuiItem />
+</tui-textfield>
+  <tui-input-date
+  tuiUnfinishedValidator="Finish filling the field"
+  [max]="max"
+  [min]="min"
+  formControlName="deadline"
+  >
+  Choose a date
+</tui-input-date>
+<tui-error [error]="[] | tuiFieldError | async" />
+<label tuiLabel>
+  <input formControlName="importantTask" tuiSwitch type="checkbox" />
+  Important Task
+  <tui-icon tuiTooltip="Only important task should be toggled" />
+</label>
+<footer>
+  <button appearance="secondary" tuiButton type="button">Cancel</button>
+  <button tuiButton type="submit">Add Task</button>
+</footer>
+</form>
+<pre>{{form.value | json}}</pre>

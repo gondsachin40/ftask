@@ -58,6 +58,13 @@ export class Navbar extends TuiPortals implements OnInit {
   isAllPage = false;
   isTaskPage = false;
   isAllPageSig = signal(false);
+  //how signal works:
+  //to access signal value you have to call its function 
+  //for example for accessing flag signal flag()
+  //to set the value you can use set() or update() and update is recommended by angular
+  //for doing calculation you have to use computed() it accepts a function and update also
+  //for updating signal array we have to use update() array.update((values)=>[...values,"item"])
+  //mutate is also a way but it is dropped in angualar 17
   url: string = "";
   username: string | undefined = "";
   protected expanded = signal(false);
@@ -86,6 +93,8 @@ export class Navbar extends TuiPortals implements OnInit {
     console.log(this.router.url);
   }
   ngOnInit(): void {
+    //ngOnInit is angular lifecycle
+    //it is like constructor we put all the values with help of it
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
         this.url = e.urlAfterRedirects;

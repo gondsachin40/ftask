@@ -1,0 +1,69 @@
+<p>add-objective works!</p>
+<form
+  tuiAppearance="floating"
+  tuiCardLarge
+  tuiForm="m"
+  [formGroup]="form"
+  [style.max-width.rem]="32"
+  (ngSubmit)="onSubmit()"
+>
+<tui-textfield
+    multi
+    [style.width.rem]="15"
+    [tuiTextfieldCleaner]="false"
+>
+    <input
+        tuiInputChip
+        formControlName="members"
+    />
+    <button
+        appearance="icon"
+        iconStart="@tui.x"
+        size="m"
+        tuiIconButton
+        type="button"
+        (click)="form.get('members')?.setValue(this.members)"
+    >
+        Clear
+    </button>
+    <tui-input-chip *tuiItem />
+</tui-textfield>
+<tui-textfield
+    multi
+    [style.width.rem]="15"
+    [tuiTextfieldCleaner]="false"
+>
+    <input
+        tuiInputChip
+        formControlName="tasks"
+    />
+    <button
+        appearance="icon"
+        iconStart="@tui.x"
+        size="m"
+        tuiIconButton
+        type="button"
+        (click)="form.get('tasks')?.setValue(this.tasks)"
+    >
+        Clear
+    </button>
+    <tui-input-chip *tuiItem />
+</tui-textfield>
+
+  <tui-input-date tuiUnfinishedValidator="Finish filling the field" formControlName="deadline" [max]="max" [min]="min">
+    Choose a deadline
+  </tui-input-date>
+  <tui-error [error]="[] | tuiFieldError | async" />
+  <label tuiLabel>
+    <input formControlName="importantObjective" tuiSwitch type="checkbox" />
+    Important Task
+    <tui-icon tuiTooltip="Only important task should be toggled" />
+  </label>
+  <footer>
+    <button appearance="secondary" tuiButton type="button">Cancel</button>
+    <button tuiButton type="submit">Add Objective</button>
+  </footer>
+</form>
+<pre>
+  {{form.value | json}}
+</pre>

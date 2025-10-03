@@ -47,4 +47,9 @@ export class All {
     console.log(s);
     this.router.navigate([`/task/${s}`]);
   }
+  addtask() {
+    let id = this.router.url.split('/')[2];
+    console.log(id);
+    // this.router.navigate([`/addtask/${s}`]);
+  }
 }

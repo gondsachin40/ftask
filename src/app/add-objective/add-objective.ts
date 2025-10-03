@@ -1,87 +1,37 @@
-import {AsyncPipe, NgIf} from '@angular/common';
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
-import {TuiDay,TuiBooleanHandler} from '@taiga-ui/cdk'
-import { JsonPipe } from '@angular/common';
-import { take } from 'rxjs';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {
-    TuiAppearance,
-    TuiButton,
-    TuiError,
-    TuiIcon,
-    TuiNotification,
-    TuiTextfield,
-    TuiTitle,
-} from '@taiga-ui/core';
-import {TuiFieldErrorPipe, TuiSegmented, TuiSwitch, TuiTooltip} from '@taiga-ui/kit';
-import {TuiCardLarge, TuiForm, TuiHeader} from '@taiga-ui/layout';
-import {TuiInputChip} from '@taiga-ui/kit';
- 
-import{
-  TuiInputDateModule,
-  TuiTextfieldControllerModule,
-  TuiUnfinishedValidator,
-}from '@taiga-ui/legacy'
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
     standalone: true,
-    selector:'add-objective'
+    selector: 'add-objective'
     ,
-    imports: [
-    JsonPipe,
-    TuiInputChip,
-    AsyncPipe,
-    NgIf,
-    ReactiveFormsModule,
-    TuiAppearance,
-    TuiButton,
-    TuiCardLarge,
-    TuiError,
-    TuiFieldErrorPipe,
-    TuiInputDateModule,
-    TuiTextfieldControllerModule,
-    TuiUnfinishedValidator,
-    TuiForm,
-    TuiHeader,
-    TuiIcon,
-    TuiNotification,
-    TuiSegmented,
-    TuiSwitch,
-    TuiTextfield,
-    TuiTitle,
-    TuiTooltip,
-    AsyncPipe,
-    FormsModule
-],
+    imports: [ReactiveFormsModule],
     templateUrl: './add-objective.html',
-    styleUrls: ['./add-objective.less'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    styleUrl: './add-objective.css',
 })
 export class AddObjective {
-    protected readonly members = [...''];
-    protected readonly tasks = [...''];
-    private readonly http = inject(HttpClient)
-    protected readonly form = new FormGroup({
-        members:new FormControl(this.members,{nonNullable:true}),
-        tasks:new FormControl(this.tasks,{nonNullable:true}),
-        deadline:new FormControl(new TuiDay(2017,0,15)),
-        importantObjective:new FormControl(false)
-    });
- 
-    protected readonly min = new TuiDay(2017, 0, 21);
-    protected readonly max = new TuiDay(2017, 0, 28);
-    
-    postData(data: any): void {
-        this.http.post('http://localhost:3000/task/create', data
-        ).subscribe({
-            next: (res) => console.log('Response:', res),
-            error: (err) => console.error('Error:', err),
-        });
-    }
+    constructor(private http: HttpClient, private route: Router) {
 
+    }
+    title = new FormControl();
     onSubmit(): void {
-        if (this.form.valid) {
-            this.postData(this.form.value);
+        let payload = {
+            title: this.title.value,
         }
+        if (this.title.value === "") return;
+        console.log(payload);
+        this.http.post<any>('http://localhost:3000/task/create', payload, { withCredentials: true }).subscribe({
+            next: (res) => {
+                console.log(res);
+                console.log(res._id);
+                this.route.navigate([`addtask/${res._id}`]);
+            },
+            error: (res) => {
+                console.log(res);
+            }
+        })
+
+
     }
 }

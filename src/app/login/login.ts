@@ -32,7 +32,7 @@ export class Login {
       password: this.password
     };
     console.log(payload)
-    this.http.post<ApiRes>('http://localhost:3000/auth/login', payload, { withCredentials: true })
+    this.http.post<ApiRes>('http://localhost:3000/auth/login', payload)
       .subscribe({
         next: (response) => {
           console.log('API Response:', response);

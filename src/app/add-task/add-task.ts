@@ -1,11 +1,12 @@
-import {AsyncPipe, NgIf} from '@angular/common';
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {TuiDay} from '@taiga-ui/cdk'
+import { AsyncPipe, NgIf } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TuiDay } from '@taiga-ui/cdk'
 import { JsonPipe } from '@angular/common';
 import { TuiInputChip } from '@taiga-ui/kit';
 import { TuiItem } from '@taiga-ui/cdk';
 import { TuiBooleanHandler } from '@taiga-ui/cdk';
+import { Router } from '@angular/router';
 import {
     TuiAppearance,
     TuiButton,
@@ -15,16 +16,17 @@ import {
     TuiTextfield,
     TuiTitle,
 } from '@taiga-ui/core';
-import {TuiFieldErrorPipe, TuiSegmented, TuiSwitch, TuiTooltip} from '@taiga-ui/kit';
-import {TuiCardLarge, TuiForm, TuiHeader} from '@taiga-ui/layout';
-import{
-  TuiInputDateModule,
-  TuiTextfieldControllerModule,
-  TuiUnfinishedValidator,
-}from '@taiga-ui/legacy'
+import { TuiFieldErrorPipe, TuiSegmented, TuiSwitch, TuiTooltip } from '@taiga-ui/kit';
+import { TuiCardLarge, TuiForm, TuiHeader } from '@taiga-ui/layout';
+import {
+    TuiInputDateModule,
+    TuiTextfieldControllerModule,
+    TuiUnfinishedValidator,
+} from '@taiga-ui/legacy'
+import { HttpClient } from '@angular/common/http';
 @Component({
     standalone: true,
-    selector:'add-task'
+    selector: 'add-task'
     ,
     imports: [
         TuiInputChip,
@@ -55,17 +57,36 @@ import{
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddTask {
-    links= [...'']
+    constructor(private router: Router, private http: HttpClient) { }
+    links = [...'']
     protected readonly form = new FormGroup({
-        taskTitle: new FormControl('',Validators.required),
-        taskDescription: new FormControl('',Validators.required),
-        links:new FormControl(this.links,{nonNullable:false}),
+        taskTitle: new FormControl('', Validators.required),
+        taskDescription: new FormControl('', Validators.required),
+        links: new FormControl(this.links, { nonNullable: false }),
         deadline: new FormControl(new TuiDay(2017, 0, 15)),
-        importantTask:new FormControl(false)
+        importantTask: new FormControl(false)
     });
-    onSubmit(){
-        if (this.form.valid)
+    onSubmit() {
+        let id = this.router.url.split('/')[2];
+        if (this.form.valid) {
+            console.log(this.form.value);
+        }
         console.log("submitted")
+        let payload = {
+            taskTitle: this.form.value.taskTitle,
+            taskDescription: this.form.value.taskDescription,
+            links: this.form.value.links,
+            tasksId: id
+        }
+        this.http.post<any>('http://localhost:3000/task/addtask', payload, { withCredentials: true }).subscribe({
+            next: (res) => {
+                console.log(res);
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        })
+
     }
     protected readonly min = new TuiDay(2017, 0, 21);
     protected readonly max = new TuiDay(2017, 0, 28);

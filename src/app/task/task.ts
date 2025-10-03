@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { TuiAppearance, TuiIcon, TuiSurface, TuiTitle } from '@taiga-ui/core';
 import { TuiAvatar } from '@taiga-ui/kit';
 import { TuiCardLarge, TuiCell, TuiHeader } from '@taiga-ui/layout';
+import { Router } from '@angular/router';
 interface ApiRes {
   _id: string;
   taskTitle: string;
@@ -30,13 +31,7 @@ interface Taskinfo {
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [
-    TuiAppearance,
-    TuiCardLarge,
-    TuiHeader,
-    TuiSurface,
-    TuiTitle,
-  ],
+  imports: [],
   templateUrl: './task.html',
   styleUrl: './task.css'
 })
@@ -44,7 +39,7 @@ export class Task implements OnInit {
   tasks: Taskinfo[] = [];
 
   constructor(
-    private route: ActivatedRoute,
+    private route: ActivatedRoute, private router: Router,
     private http: HttpClient
   ) { }
 
@@ -74,5 +69,9 @@ export class Task implements OnInit {
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
+  }
+  addtask() {
+    let k = this.route.snapshot.paramMap.get('id');
+    this.router.navigate([`/addtask/${k}`]);
   }
 }

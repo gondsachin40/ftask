@@ -51,11 +51,9 @@ interface ApiRes {
   styleUrl: './login.css'
 })
 export class Login {
-  username: string = '';
-  password: string = '';
   protected readonly form = new FormGroup({
-    username:new FormControl(this.username),
-    password:new FormControl(this.password)
+    username:new FormControl(''),
+    password:new FormControl('')
   })
   cookieService = inject(CookieService);
   constructor(private http: HttpClient, private userservice: User, private router: Router) {
@@ -66,8 +64,8 @@ export class Login {
   }
   onSubmit() {
     const payload = {
-      username: this.username,
-      password: this.password
+      username: this.form.value.username,
+      password: this.form.value.password
     };
     console.log(payload)
     this.http.post<ApiRes>('http://localhost:3000/auth/login', payload)

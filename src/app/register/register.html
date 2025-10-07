@@ -1,4 +1,20 @@
-<div class="login-container">
+<form tuiAppearance="floating" tuiCardLarge tuiForm="l" (submit)="onSubmit()" [formGroup]="form">
+  <header tuiHeader>
+    <h2 tuiTitle>Register</h2>
+  </header>
+  <tui-textfield>
+    <label tuiLabel>Username</label>
+    <input placeholder="john.wick" id="username" name="username" formControlName="username" type="text" tuiTextfield />
+  </tui-textfield>
+  <tui-textfield>
+    <label tuiLabel>Password</label>
+    <input placeholder="john@wick.com"  formControlName="password" id="password"name="password" type="password" tuiTextfield/>
+  </tui-textfield>
+  <footer>
+    <button tuiButton type="submit">Submit</button>
+  </footer>
+</form>
+<!-- <div class="login-container">
     <form (submit)="onSubmit()" class="login-form">
         <div class="form-group">
             <label for="username">username</label>
@@ -13,4 +29,4 @@
         <button type="submit" class="login-btn">Login</button>
         <button type="button" (click)="goToRegister()">New Register</button>
     </form>
-</div>
+</div> -->

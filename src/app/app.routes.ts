@@ -12,6 +12,6 @@ export const routes: Routes = [
     { path: 'register', component: Register },
     { path: 'all', component: All },
     { path: 'task/:id', component: Task },
-    { path: 'addtask/:id', component: AddTask },
-    { path: 'addobjective', component: AddObjective }
+    { path: 'addTask/:id', component: AddTask },
+    { path: 'addObjective', component: AddObjective }
 ];

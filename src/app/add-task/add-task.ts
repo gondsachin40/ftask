@@ -58,13 +58,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddTask {
     constructor(private router: Router, private http: HttpClient) { }
-    links = [...'']
+    protected readonly links = [...'']
     protected readonly form = new FormGroup({
         taskTitle: new FormControl('', Validators.required),
         taskDescription: new FormControl('', Validators.required),
         links: new FormControl(this.links, { nonNullable: false }),
-        deadline: new FormControl(new TuiDay(2017, 0, 15)),
-        importantTask: new FormControl(false)
     });
     onSubmit() {
         let id = this.router.url.split('/')[2];

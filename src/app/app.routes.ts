@@ -6,6 +6,7 @@ import { All } from './all/all';
 import { Task } from './task/task';
 import { AddObjective } from './add-objective/add-objective';
 import { AddTask } from './add-task/add-task';
+import { EditTask } from './edit-task/edit-task';
 export const routes: Routes = [
     { path: '', component: Home },
     { path: 'login', component: Login },
@@ -13,5 +14,6 @@ export const routes: Routes = [
     { path: 'all', component: All },
     { path: 'task/:id', component: Task },
     { path: 'addTask/:id', component: AddTask },
-    { path: 'addObjective', component: AddObjective }
+    { path: 'addObjective', component: AddObjective },
+    { path: ':id/edit', component: EditTask }
 ];

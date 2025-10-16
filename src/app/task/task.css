@@ -2,10 +2,10 @@
   max-width: 900px; /* increased max width */
   margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
   gap: 24px; /* bigger gap */
   padding: 24px;
   justify-content: center;
+  flex-direction: row;
   box-sizing: border-box;
 }
 

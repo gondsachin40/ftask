@@ -94,6 +94,7 @@ export class Task implements OnInit {
       .subscribe({
         next: (response) => {
           console.log('API Response:', response);
+          this.router.navigate(['/task', this.route.snapshot.paramMap.get('id')]);
         },
         error: (error) => {
           console.error('API Error:', error);

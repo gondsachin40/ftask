@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { TuiAppearance, TuiIcon, TuiSurface, TuiTitle } from '@taiga-ui/core';
 import { TuiAvatar } from '@taiga-ui/kit';
 import { TuiCardLarge, TuiCell, TuiHeader } from '@taiga-ui/layout';
+import { Addsign } from './addsign/addsign';
 interface Ans {
   title: string,
   id: string,
@@ -13,6 +14,7 @@ interface Ans {
   selector: 'app-all',
   standalone: true,
   imports: [
+    Addsign,
     TuiAppearance,
     TuiCardLarge,
     TuiHeader,
@@ -46,6 +48,10 @@ export class All {
   goToTask(s: string) {
     console.log(s);
     this.router.navigate([`/task/${s}`]);
+  }
+  goToObjective() {
+    console.log("Objective");
+    this.router.navigate(['/addObjective']);
   }
   addtask() {
     let id = this.router.url.split('/')[2];

@@ -82,25 +82,46 @@ export class Task implements OnInit {
     description: new FormControl(''),
     links: new FormControl(this.links),
   });
-  onSubmit() {
-    const body = {
-      taskTitle: this.form.value.title,
-      taskDescription: this.form.value.description,
-      links: this.form.value.links,
-      tasksId: this.route.snapshot.paramMap.get('id') 
-      };
-    this.http
-      .post('http://localhost:3000/task/addTask', body, { withCredentials: true })
-      .subscribe({
-        next: (response) => {
-          console.log('API Response:', response);
-          this.router.navigate(['/task', this.route.snapshot.paramMap.get('id')]);
-        },
-        error: (error) => {
-          console.error('API Error:', error);
-        },
-      });
-  }
+ onSubmit() {
+  const body = {
+    taskTitle: this.form.value.title,
+    taskDescription: this.form.value.description,
+    links: this.form.value.links,
+    tasksId: this.route.snapshot.paramMap.get('id'),
+  };
+
+  this.http
+    .post('http://localhost:3000/task/addTask', body, { withCredentials: true })
+    .subscribe({
+      next: (response: any) => {
+        console.log('API Response:', response);
+
+        const createdAtFormatted = this.formatDate(response.createdAt);
+        const updatedAtFormatted = this.formatDate(response.updatedAt);
+
+        const formattedTask: Taskinfo = {
+          _id: response._id,
+          taskTitle: response.taskTitle,
+          taskDescription: response.taskDescription,
+          links: response.links,
+          tasksId: response.tasksId,
+          createdAt: response.createdAt,
+          updatedAt: response.updatedAt,
+          createdAtFormatted,
+          updatedAtFormatted,
+          __v: response.__v,
+        };
+
+        this.tasks.push(formattedTask);
+
+        // this.router.navigate(['/task', body.tasksId]);
+      },
+      error: (error) => {
+        console.error('API Error:', error);
+      },
+    });
+}
+
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {

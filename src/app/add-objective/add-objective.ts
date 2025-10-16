@@ -82,6 +82,7 @@ export class AddObjective {
       .subscribe({
         next: (response) => {
             console.log('API Response:', response);
+            this.router.navigate(['/all']);
         },
         error: (error) => {
           console.error('API Error:', error);

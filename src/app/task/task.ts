@@ -81,7 +81,6 @@ export class Task implements OnInit {
   links: string[] = [];
   @ViewChild('cardContainer') cardContainer!: ElementRef<HTMLDivElement>
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
-
   protected readonly form = new FormGroup({
     title: new FormControl(''),
     description: new FormControl(''),
@@ -148,6 +147,7 @@ export class Task implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
+    
     console.log('page load task')
     if (id) {
       this.http

@@ -1,0 +1,9 @@
+.navButton {
+    background-color: black;
+    color: white;
+    border: 1.5px solid white;
+    border-radius: 10px;
+}
+.navButton:hover {
+    background-color: darkgray;
+}

@@ -4,7 +4,7 @@ import { TuiLink, TuiNotification } from '@taiga-ui/core';
 import { Router } from '@angular/router';
 import { TuiAppearance, TuiIcon, TuiSurface, TuiTitle } from '@taiga-ui/core';
 import { TuiAvatar } from '@taiga-ui/kit';
-import { TuiCardLarge, TuiCell, TuiHeader } from '@taiga-ui/layout';
+import { TuiCardLarge, TuiCell, TuiHeader, TuiCardMedium } from '@taiga-ui/layout';
 import { Addsign } from './addsign/addsign';
 interface Ans {
   title: string,
@@ -20,7 +20,8 @@ interface Ans {
     TuiHeader,
     TuiSurface,
     TuiTitle,
-  ],
+    TuiCardMedium
+],
   templateUrl: './all.html',
   styleUrl: './all.css'
 })

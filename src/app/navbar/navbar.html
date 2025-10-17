@@ -4,19 +4,19 @@
     <h1>Welcome back</h1>
     }
     @if(login){
-    <button appearance="primary" tuiButton type="button" routerLink="all">
+    <button appearance="primary" tuiButton type="button" class="navButton" routerLink="all">
         all
     </button>
-    <button appearance="secondary" tuiButton type="button" style="color: white;">
+    <button appearance="primary" tuiButton type="button" class="navButton" style="color: white;">
         <tui-avatar size="xs"
-            src="https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/smiling-face-with-smiling-eyes.png" />
+            src="https://p7.hiclipart.com/preview/536/822/499/giant-panda-bear-red-panda-telus-customer-service-bear.jpg" />
         {{username}}
     </button>
     }@else {
-    <button appearance="primary" tuiButton type="button" routerLink="register">
+    <button appearance="primary" tuiButton type="button" class="navButton" routerLink="register">
         register
     </button>
-    <button appearance="primary" tuiButton type="button" routerLink="login">
+    <button appearance="primary" tuiButton type="button" class="navButton" routerLink="login">
         login
     </button>
     }

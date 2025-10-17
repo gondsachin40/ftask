@@ -144,7 +144,13 @@ export class Task implements OnInit {
         },
       });
   }
-
+  ngAfterViewInit() {
+    const el = this.cardContainer.nativeElement
+    el.addEventListener('wheel', (event:WheelEvent) =>{
+      event.preventDefault();
+      el.scrollLeft += event.deltaY;
+    })
+  }
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     

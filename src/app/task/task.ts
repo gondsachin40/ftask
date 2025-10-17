@@ -23,6 +23,7 @@ import {
 } from '@taiga-ui/legacy';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { EditTask } from '../edit-task/edit-task';
 interface ApiRes {
   _id: string;
   taskTitle: string;
@@ -82,6 +83,13 @@ export class Task implements OnInit {
     description: new FormControl(''),
     links: new FormControl(this.links),
   });
+  edittask(id:String){
+    console.log(id)
+    this.router.navigate(['/edit',id])
+  }
+  deletetask(id:String){
+    console.log(id)
+  }
  onSubmit() {
   const body = {
     taskTitle: this.form.value.title,
@@ -89,7 +97,6 @@ export class Task implements OnInit {
     links: this.form.value.links,
     tasksId: this.route.snapshot.paramMap.get('id'),
   };
-
   this.http
     .post('http://localhost:3000/task/addTask', body, { withCredentials: true })
     .subscribe({

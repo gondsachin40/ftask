@@ -15,5 +15,5 @@ export const routes: Routes = [
     { path: 'task/:id', component: Task },
     { path: 'addTask/:id', component: AddTask },
     { path: 'addObjective', component: AddObjective },
-    { path: ':id/edit', component: EditTask }
+    { path: 'edit/:id', component: EditTask }
 ];

@@ -2,6 +2,7 @@
   max-width: 100%; /* increased max width */
   display: flex;
   gap: 24px; /* bigger gap */
+  padding: 5px;
   justify-content: center;
   white-space: nowrap;
   flex-direction: row;
@@ -9,7 +10,7 @@
   overflow: auto;
 }
 .card-container::-webkit-scrollbar {
-  width: fit-content;
+  width: 8px;
   height: 8px;
 }
 .card-container::-webkit-scrollbar-thumb {

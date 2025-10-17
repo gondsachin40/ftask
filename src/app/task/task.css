@@ -1,15 +1,25 @@
 .card-container {
-  max-width: 900px; /* increased max width */
-  margin: 0 auto;
+  max-width: 100%; /* increased max width */
   display: flex;
   gap: 24px; /* bigger gap */
-  padding: 24px;
   justify-content: center;
+  white-space: nowrap;
   flex-direction: row;
   box-sizing: border-box;
+  overflow: auto;
 }
-
+.card-container::-webkit-scrollbar {
+  width: 8px;
+}
+.card-container::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+.card-container::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
 .task-card {
+  display: inline-block;
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
   border-radius: 14px;
@@ -49,4 +59,9 @@
     max-width: 100%;
     padding: 24px;
   }
+}
+
+#formDiv {
+   display: flex;
+   justify-content: center;
 }

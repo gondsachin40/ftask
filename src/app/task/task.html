@@ -1,4 +1,5 @@
-<div class="card-container">
+<div>
+  <div class="card-container">
     @for (x of tasks; track x) {
       <div class="task-card">
         <h2 class="task-title">{{ x.taskTitle }}</h2>
@@ -12,19 +13,21 @@
       </div>
     }
   </div>
+</div>
   <!-- <div class="task-card">
     <button class="task-title" (click)="addtask()">add task</button>
   </div>
 </div> -->
-<form
+<div id="formDiv">
+  <form
   tuiAppearance="floating"
   tuiCardLarge
   tuiForm="m"
   [formGroup]="form"
   [style.max-width.rem]="32"
   (submit)="onSubmit()"
->
-<tui-textfield>
+  >
+  <tui-textfield>
     <label tuiLabel>title</label>
     <input placeholder="task title" id="title" name="title" formControlName="title" type="text" tuiTextfield />
   </tui-textfield>
@@ -32,32 +35,31 @@
     <label tuiLabel>description</label>
     <input placeholder="Task description" id="description" name="description" formControlName="description" type="text" tuiTextfield />
   </tui-textfield>
-<tui-textfield
-    multi
-    [style.width.rem]="15"
-    [tuiTextfieldCleaner]="false"
->
+  <tui-textfield
+  multi
+  [style.width.rem]="15"
+  [tuiTextfieldCleaner]="false"
+  >
   <label tuiLabel>Links</label>
-    <input
-        tuiInputChip
-        formControlName="links"
-    />
-    <button
-        appearance="icon"
-        iconStart="@tui.x"
-        size="m"
-        tuiIconButton
-        type="button"
-        (click)="form.get('links')?.setValue(this.links)"
-    >
-        Clear
-    </button>
-    <tui-input-chip *tuiItem />
+  <input
+  tuiInputChip
+  formControlName="links"
+  />
+  <button
+  appearance="icon"
+  iconStart="@tui.x"
+  size="m"
+  tuiIconButton
+  type="button"
+  (click)="form.get('links')?.setValue(this.links)"
+  >
+  Clear
+</button>
+<tui-input-chip *tuiItem />
 </tui-textfield>
-  <footer>
-    <button appearance="secondary" tuiButton type="button">Cancel</button>
-    <button tuiButton type="submit" >Add Task</button>
-  </footer>
+<footer>
+  <button appearance="secondary" tuiButton type="button">Cancel</button>
+  <button tuiButton type="submit" >Add Task</button>
+</footer>
 </form>
-<pre>
-</pre>
+</div>

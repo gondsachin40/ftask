@@ -13,7 +13,7 @@ import {
   TuiTitle,
 } from '@taiga-ui/core';
 import { TuiFieldErrorPipe, TuiSegmented, TuiSwitch, TuiTooltip } from '@taiga-ui/kit';
-import { TuiCardLarge, TuiForm, TuiHeader } from '@taiga-ui/layout';
+import { TuiCardLarge, TuiForm, TuiHeader, TuiCardMedium } from '@taiga-ui/layout';
 import { TuiInputChip } from '@taiga-ui/kit';
 
 import {
@@ -69,7 +69,8 @@ interface Taskinfo {
     TuiTextfield,
     TuiTitle,
     TuiTooltip,
-  ],
+    TuiCardMedium
+],
   templateUrl: './task.html',
   styleUrl: './task.css',
 })

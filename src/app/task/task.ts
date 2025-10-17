@@ -46,6 +46,8 @@ interface Taskinfo {
   updatedAt: string;
   __v: number;
 }
+import { ViewChild } from '@angular/core';
+import { ElementRef } from '@angular/core';
 @Component({
   selector: 'app-task',
   standalone: true,
@@ -77,6 +79,14 @@ interface Taskinfo {
 export class Task implements OnInit {
   tasks: Taskinfo[] = [];
   links: string[] = [];
+  @ViewChild('cardContainer') cardContainer!: ElementRef<HTMLDivElement>;
+  ngAfterViewInit() {
+    const el = this.cardContainer.nativeElement;
+    el.addEventListener('wheel', (event: WheelEvent) => {
+      event.preventDefault();
+      el.scrollLeft += event.deltaY;
+    });
+  }
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) {}
 
   protected readonly form = new FormGroup({

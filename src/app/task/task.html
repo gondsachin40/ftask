@@ -1,5 +1,5 @@
 <div>
-  <div class="card-container">
+  <div class="card-container" #cardContainer>
     @for (x of tasks; track x) {
       <div class="task-card">
         <h2 class="task-title">{{ x.taskTitle }}</h2>
@@ -63,3 +63,10 @@
 </footer>
 </form>
 </div>
+<script>
+  const cardContainer = document.querySelector('.card-container');
+  cardContainer.addEventListener('wheel', (event) => {
+    event.preventDefault();
+    cardContainer.scrollLeft += event.deltaY;
+  })
+</script>

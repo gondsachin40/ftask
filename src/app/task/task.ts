@@ -72,7 +72,7 @@ import { ElementRef } from '@angular/core';
     TuiTitle,
     TuiTooltip,
     TuiCardMedium
-],
+  ],
   templateUrl: './task.html',
   styleUrl: './task.css',
 })
@@ -87,71 +87,90 @@ export class Task implements OnInit {
       el.scrollLeft += event.deltaY;
     });
   }
-  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) {}
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   protected readonly form = new FormGroup({
     title: new FormControl(''),
     description: new FormControl(''),
     links: new FormControl(this.links),
   });
-  edittask(id:String){
+  edittask(id: String) {
     console.log(id)
-    this.router.navigate(['/edit',id])
+    this.router.navigate(['/edit', id])
   }
-  deletetask(id:String){
-    console.log(id)
+  deletetask(id: string): void {
+    if (!id) return;
+    console.log(id);
+    this.http
+      .post(`http://localhost:3000/task/deleteTask/${id}`, {}, { withCredentials: true })
+      .subscribe({
+        next: (response: any) => {
+          this.tasks = this.tasks.filter(task => task._id !== id);
+          console.log('Updated task list:', this.tasks);
+        },
+        error: (error) => {
+          console.error('API Error:', error);
+        },
+      });
   }
- onSubmit() {
-  const body = {
-    taskTitle: this.form.value.title,
-    taskDescription: this.form.value.description,
-    links: this.form.value.links,
-    tasksId: this.route.snapshot.paramMap.get('id'),
-  };
-  this.http
-    .post('http://localhost:3000/task/addTask', body, { withCredentials: true })
-    .subscribe({
-      next: (response: any) => {
-        console.log('API Response:', response);
 
-        const createdAtFormatted = this.formatDate(response.createdAt);
-        const updatedAtFormatted = this.formatDate(response.updatedAt);
+  onSubmit() {
+    const body = {
+      taskTitle: this.form.value.title,
+      taskDescription: this.form.value.description,
+      links: this.form.value.links,
+      tasksId: this.route.snapshot.paramMap.get('id'),
+    };
+    this.http
+      .post('http://localhost:3000/task/addTask', body, { withCredentials: true })
+      .subscribe({
+        next: (response: any) => {
+          console.log('API Response:', response);
 
-        const formattedTask: Taskinfo = {
-          _id: response._id,
-          taskTitle: response.taskTitle,
-          taskDescription: response.taskDescription,
-          links: response.links,
-          tasksId: response.tasksId,
-          createdAt: response.createdAt,
-          updatedAt: response.updatedAt,
-          createdAtFormatted,
-          updatedAtFormatted,
-          __v: response.__v,
-        };
+          const createdAtFormatted = this.formatDate(response.createdAt);
+          const updatedAtFormatted = this.formatDate(response.updatedAt);
 
-        this.tasks.push(formattedTask);
+          const formattedTask: Taskinfo = {
+            _id: response._id,
+            taskTitle: response.taskTitle,
+            taskDescription: response.taskDescription,
+            links: response.links,
+            tasksId: response.tasksId,
+            createdAt: response.createdAt,
+            updatedAt: response.updatedAt,
+            createdAtFormatted,
+            updatedAtFormatted,
+            __v: response.__v,
+          };
 
-        // this.router.navigate(['/task', body.tasksId]);
-      },
-      error: (error) => {
-        console.error('API Error:', error);
-      },
-    });
-}
+          this.tasks.push(formattedTask);
+
+          // this.router.navigate(['/task', body.tasksId]);
+        },
+        error: (error) => {
+          console.error('API Error:', error);
+        },
+      });
+  }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
+    console.log('page load task')
     if (id) {
       this.http
-        .get<{ tasks: ApiRes[] }>(`http://localhost:3000/task/${id}`, { withCredentials: true })
+        .get<{ tasks: (ApiRes | null)[] }>(`http://localhost:3000/task/getObjective/${id}`, {
+          withCredentials: true,
+        })
         .subscribe({
           next: (response) => {
-            const formattedTasks = response.tasks.map((task) => ({
-              ...task,
-              createdAtFormatted: this.formatDate(task.createdAt),
-              updatedAtFormatted: this.formatDate(task.updatedAt),
-            }));
+            const formattedTasks = response.tasks
+              .filter((task): task is ApiRes => task !== null && typeof task === 'object') // filter out nulls
+              .map((task) => ({
+                ...task,
+                createdAtFormatted: task.createdAt ? this.formatDate(task.createdAt) : 'N/A',
+                updatedAtFormatted: task.updatedAt ? this.formatDate(task.updatedAt) : 'N/A',
+              }));
+
             this.tasks.push(...formattedTasks);
             console.log('Loaded tasks:', this.tasks);
           },
@@ -159,6 +178,7 @@ export class Task implements OnInit {
             console.error('Failed to load tasks', err);
           },
         });
+
     }
   }
   formatDate(dateString: string): string {

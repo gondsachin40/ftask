@@ -58,7 +58,7 @@ import { HttpClient } from '@angular/common/http';
 export class EditTask {
   taskId: string | null = null;
   payload: any = {};
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient) { }
   protected readonly links = [...''];
   protected readonly form = new FormGroup({
     taskTitle: new FormControl('', Validators.required),
@@ -68,10 +68,11 @@ export class EditTask {
   ngOnInit() {
     this.taskId = this.router.url.split('/')[2];
     this.http
-      .get<any>(`http://localhost:3000/task/gettask/${this.taskId}`, { withCredentials: true })
+      .get<any>(`http://localhost:3000/task/getTask/${this.taskId}`, { withCredentials: true })
       .subscribe({
         next: (res) => {
-          console.log(res);
+          // console.log(res);
+
         },
         error: (err) => {
           console.log(err);
@@ -81,7 +82,15 @@ export class EditTask {
   onSubmit() {
     if (this.form.valid) {
       console.log(this.form.value);
+      this.http.post(`http://localhost:3000/task/editTask/${this.taskId}`, this.form.value, { withCredentials: true })
+        .subscribe({
+          next: (response) => {
+            console.log('API Response:', response);
+          },
+          error: (error) => {
+            console.error('API Error:', error);
+          }
+        });
     }
-    console.log('submitted');
   }
 }

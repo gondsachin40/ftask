@@ -1,68 +1,50 @@
 <div class="container">
   <div class="card-container" #cardContainer>
     @for (x of tasks; track x) {
-      <div class="task-card">
-        <h2 class="task-title">{{ x.taskTitle }}</h2>
-        <p class="task-desc">{{ x.taskDescription }}</p>
-        @for (y of x.links;track y){
-          <a href="{{y}}">{{y}}</a>
-        }
-        <p class="task-date">{{ x.createdAtFormatted }}</p>
-        <button (click)="edittask(x._id)" class="taskButton">Edit</button>
-        <button (click)="deletetask(x._id)" class="taskButton">Delete</button>
-        <div class="radioContainer">
-          <input type="radio" value="done">
-          <label for="radio">DONE</label>
-        </div>
-        </div>
+    <div class="task-card">
+      <h2 class="task-title">{{ x.taskTitle }}</h2>
+      <p class="task-desc">{{ x.taskDescription }}</p>
+      @for (y of x.links;track y){
+      <a href="{{y}}">{{y}}</a>
+      }
+      <p class="task-date">{{ x.createdAtFormatted }}</p>
+      <button (click)="edittask(x._id)" class="taskButton">Edit</button>
+      <button (click)="deletetask(x._id)" class="taskButton">Delete</button>
+      <div class="radioContainer">
+        <input type="radio" value="done">
+        <label for="radio">DONE</label>
+      </div>
+    </div>
     }
   </div>
 </div>
-  <!-- <div class="task-card">
+<!-- <div class="task-card">
     <button class="task-title" (click)="addtask()">add task</button>
   </div>
 </div> -->
 <div id="formDiv">
-  <form
-  tuiAppearance="floating"
-  tuiCardLarge
-  tuiForm="m"
-  [formGroup]="form"
-  [style.max-width.rem]="32"
-  (submit)="onSubmit()"
-  >
-  <tui-textfield>
-    <label tuiLabel>title</label>
-    <input placeholder="task title" id="title" name="title" formControlName="title" type="text" tuiTextfield />
-  </tui-textfield>
-  <tui-textfield>
-    <label tuiLabel>description</label>
-    <input placeholder="Task description" id="description" name="description" formControlName="description" type="text" tuiTextfield />
-  </tui-textfield>
-  <tui-textfield
-  multi
-  [style.width.rem]="15"
-  [tuiTextfieldCleaner]="false"
-  >
-  <label tuiLabel>Links</label>
-  <input
-  tuiInputChip
-  formControlName="links"
-  />
-  <button
-  appearance="icon"
-  iconStart="@tui.x"
-  size="m"
-  tuiIconButton
-  type="button"
-  (click)="form.get('links')?.setValue(this.links)"
-  >
-  Clear
-</button>
-<tui-input-chip *tuiItem />
-</tui-textfield>
-<footer>
-  <button tuiButton type="submit" id="submitButton" >Add Task</button>
-</footer>
-</form>
+  <form tuiAppearance="floating" tuiCardLarge tuiForm="m" [formGroup]="form" [style.max-width.rem]="32"
+    (submit)="onSubmit()">
+    <tui-textfield>
+      <label tuiLabel>title</label>
+      <input placeholder="task title" id="title" name="title" formControlName="title" type="text" tuiTextfield />
+    </tui-textfield>
+    <tui-textfield>
+      <label tuiLabel>description</label>
+      <input placeholder="Task description" id="description" name="description" formControlName="description"
+        type="text" tuiTextfield />
+    </tui-textfield>
+    <tui-textfield multi [style.width.rem]="15" [tuiTextfieldCleaner]="false">
+      <label tuiLabel>Links</label>
+      <input tuiInputChip formControlName="links" />
+      <button appearance="icon" iconStart="@tui.x" size="m" tuiIconButton type="button"
+        (click)="form.get('links')?.setValue(this.links)">
+        Clear
+      </button>
+      <tui-input-chip *tuiItem />
+    </tui-textfield>
+    <footer>
+      <button tuiButton type="submit" id="submitButton">Add Task</button>
+    </footer>
+  </form>
 </div>

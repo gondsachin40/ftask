@@ -99,4 +99,5 @@ html,body{
 .allContainer {
   background-color: black;
   height: 100vh;
+  overflow: auto;
 }

@@ -3,7 +3,7 @@
 }
 .container {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: black;
 }
 
@@ -40,6 +40,7 @@
   background-color: #ffffff;
   border: 5px solid darkgray;
   border-radius: 14px;
+  margin-left: 10px;
   padding: 28px;
   /* more padding */
   width: 100%;

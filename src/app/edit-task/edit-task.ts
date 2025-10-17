@@ -56,6 +56,7 @@ import { HttpClient } from '@angular/common/http';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditTask {
+  sach: string = "hello";
   taskId: string | null = null;
   payload: any = {};
   constructor(private router: Router, private http: HttpClient) { }
@@ -71,8 +72,12 @@ export class EditTask {
       .get<any>(`http://localhost:3000/task/getTask/${this.taskId}`, { withCredentials: true })
       .subscribe({
         next: (res) => {
-          // console.log(res);
+          console.log(res);
+          this.form.value.taskTitle = res.task.taskTitle;
 
+          this.form.value.taskDescription = res.task.taskDescription;
+
+          this.form.value.links = res.task.links;
         },
         error: (err) => {
           console.log(err);

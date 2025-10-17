@@ -1,6 +1,7 @@
 <div class="container">
   <div class="card-container" #cardContainer>
     @for (x of tasks; track x) {
+
     <div class="task-card">
       <h2 class="task-title">{{ x.taskTitle }}</h2>
       <p class="task-desc">{{ x.taskDescription }}</p>

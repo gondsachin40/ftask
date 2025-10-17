@@ -79,14 +79,7 @@ import { ElementRef } from '@angular/core';
 export class Task implements OnInit {
   tasks: Taskinfo[] = [];
   links: string[] = [];
-  @ViewChild('cardContainer') cardContainer!: ElementRef<HTMLDivElement>;
-  ngAfterViewInit() {
-    const el = this.cardContainer.nativeElement;
-    el.addEventListener('wheel', (event: WheelEvent) => {
-      event.preventDefault();
-      el.scrollLeft += event.deltaY;
-    });
-  }
+  @ViewChild('cardContainer') cardContainer!: ElementRef<HTMLDivElement>
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   protected readonly form = new FormGroup({

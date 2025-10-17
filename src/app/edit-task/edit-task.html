@@ -2,12 +2,12 @@
 <form tuiAppearance="floating" tuiCardLarge tuiForm="m" [formGroup]="form" [style.max-width.rem]="32">
   <tui-textfield>
     <label tuiLabel>task title</label>
-    <input placeholder="for e.g. java" id="taskTitle" name="taskTitle" formControlName="taskTitle" type="text"
-      tuiTextfield />
+    <input [placeholder]="[form.value.taskTitle]" id="taskTitle" name="taskTitle" formControlName="taskTitle"
+      type="text" tuiTextfield />
   </tui-textfield>
   <tui-textfield>
     <label tuiLabel>task Description</label>
-    <input placeholder="for e.g. java description" id="taskDescription" name="taskDescription"
+    <input placeholder]="[form.value.taskTitle]" id="taskDescription" name="taskDescription"
       formControlName="taskDescription" type="text" tuiTextfield />
   </tui-textfield>
   <tui-textfield multi [style.width.rem]="15" [tuiTextfieldCleaner]="false">

@@ -1,29 +1,24 @@
 <div class="container">
- <div class="card-container" #cardContainer>
-    @for (x of tasks; track x) {
-
-    <div class="task-card">
-      <h2 class="task-title">{{ x.taskTitle }}</h2>
-      <p class="task-desc">{{ x.taskDescription }}</p>
-      @for (y of x.links;track y){
-      <a href="{{y}}">{{y}}</a>
+    <div class="card-container" #cardContainer>
+      @for (x of tasks; track x) {
+        
+        <div class="task-card">
+          <h2 class="task-title">{{ x.taskTitle }}</h2>
+          <p class="task-desc">{{ x.taskDescription }}</p>
+          @for (y of x.links;track y){
+            <a href="{{y}}">{{y}}</a>
+          }
+          <p class="task-date">{{ x.createdAtFormatted }}</p>
+          <button (click)="edittask(x._id)" class="taskButton">Edit</button>
+          <button (click)="deletetask(x._id)" class="taskButton">Delete</button>
+          <div class="radioContainer">
+            <input type="radio" value="done">
+          </div>
+        </div>
       }
-      <p class="task-date">{{ x.createdAtFormatted }}</p>
-      <button (click)="edittask(x._id)" class="taskButton">Edit</button>
-      <button (click)="deletetask(x._id)" class="taskButton">Delete</button>
-      <div class="radioContainer">
-        <input type="radio" value="done">
-      </div>
-    </div>
-    }
-  </div>
-</div>
-<!-- <div class="task-card">
-    <button class="task-title" (click)="addtask()">add task</button>
-  </div>
-</div> -->
+    </div> 
 <div id="formDiv">
-  <form tuiAppearance="floating" tuiCardLarge tuiForm="m" [formGroup]="form" [style.max-width.rem]="32"
+  <form tuiAppearance="floating" tuiCardLarge  tuiForm="m" [formGroup]="form" [style.max-width.rem]="32" 
     (submit)="onSubmit()">
     <tui-textfield>
       <label tuiLabel>title</label>

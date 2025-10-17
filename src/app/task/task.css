@@ -1,12 +1,16 @@
+*{
+  box-sizing: border-box;
+}
 .container {
   width: 100%;
+  height: 100%;
+  background-color: black;
 }
 
 .card-container {
   max-width: 100%;
   /* increased max width */
   display: flex;
-  gap: 24px;
   /* bigger gap */
   padding: 5px;
   padding-bottom: 10px;
@@ -83,9 +87,11 @@
   display: flex;
   justify-content: center;
   height: 100%;
-  background-color: black;
+  background-color: black;;
 }
-
+#formDiv > form {
+  border: 4px solid darkgray;
+}
 #submitButton {
   background-color: black;
   color: white;

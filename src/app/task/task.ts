@@ -79,7 +79,7 @@ import { ElementRef } from '@angular/core';
 export class Task implements OnInit {
   tasks: Taskinfo[] = [];
   links: string[] = [];
-  @ViewChild('cardContainer') cardContainer!: ElementRef<HTMLDivElement>
+  @ViewChild('cardContainer',{static:false}) cardContainer!: ElementRef<HTMLDivElement>
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
   protected readonly form = new FormGroup({
     title: new FormControl(''),
@@ -150,6 +150,9 @@ export class Task implements OnInit {
       event.preventDefault();
       el.scrollLeft += event.deltaY;
     })
+    if (this.tasks.length > 0) {
+    el.style.setProperty('padding', '10px', 'important');
+    }
   }
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');

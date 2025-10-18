@@ -1,5 +1,12 @@
-<p>home works!</p>
-<h1>hello </h1>
-<a tuiLink routerLink="/login">
+<ul>
+    <div class="objectivesContainer">
+        @for(x of objectives;track x) {
+            <div class="objectives">
+                <h1>{{x.title}}</h1>
+            </div>
+        }
+    </div>
+</ul>
+<!-- <a tuiLink routerLink="/login">
     Link
-</a>
+</a> -->

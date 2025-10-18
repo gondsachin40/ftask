@@ -12,7 +12,6 @@
   /* increased max width */
   display: flex;
   /* bigger gap */
-  padding: 10px 0;
   background-color: gray;
   flex-direction: row;
   overflow: auto;

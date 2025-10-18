@@ -44,5 +44,24 @@ export class Members {
           console.error('API Error:', error);
         },
       });
+    }
+addmember(Name : string){
+    if(Name === "") return;
+    console.log('naam' , Name)
+    let k = this.route.snapshot.paramMap.get('id');
+    let data = {
+    username : Name,
+    objectiveId : k
+    };
+     this.http.post<any>('http://localhost:3000/task/addmember', data , { withCredentials: true }).subscribe({
+      next: (response) => {
+        console.log(response);
+        // this.ngOnInit();
+      },
+      error: (error) =>   {
+        console.error(error);
+      }
+    });
   }
-}
+
+  }

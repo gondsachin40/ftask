@@ -7,3 +7,8 @@
 .navButton:hover {
     background-color: darkgray;
 }
+#navbar {
+    display: flex;
+    background-color: black;
+    color: white;
+}

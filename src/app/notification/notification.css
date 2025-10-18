@@ -1,0 +1,27 @@
+.card {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    padding: 15px;
+    border: 4px solid darkgray;
+    width: 80%;
+    height:60px;
+    margin-top: 10px;
+}
+.cardContainer{
+    height: 100vw;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+}
+.cardContainer button {
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+}
+.buttonDiv{
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+}

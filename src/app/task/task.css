@@ -7,7 +7,12 @@
   height: 100vh;
   background-color: black;
 }
-
+.container a:link {
+  color: black;
+}
+.container a:hover {
+  color: rgba(0, 0, 0, 0.738);
+}
 .card-container {
   max-width: 100%;
   /* increased max width */
@@ -85,10 +90,9 @@
 
 #formDiv {
   display: flex;
-  justify-content: center;
-  height: 100%;
+  justify-content: space-around;
   background-color: black;
-  ;
+  align-items: center;
 }
 
 #formDiv>form {
@@ -117,4 +121,33 @@
 
 .radioContainer>input[type="radio"] {
   accent-color: black;
+}
+.membersAdd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.membersAdd span li{
+  color: white;
+  margin: 10px;
+}
+.membersAdd input {
+  height:30px;
+  border-radius: 30px;
+  padding-left: 10px;
+  width: 100px;
+}
+.membersAdd ::placeholder {
+  color: black;
+}
+.membersAdd button {
+  background-color: black;
+  color: white;
+  border: 2px solid darkgray;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+header {
+  border-radius: 0%;
 }

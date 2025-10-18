@@ -1,6 +1,12 @@
-<p>notification works!</p>
-@for(x of invitations; track x){
-    <h1>{{x.title}}</h1>
-    <h1>from => {{x.createdby.username}}</h1>
-    <button (click)="accept(x._id)">accept invitations</button>
-}
+<div class="cardContainer">
+
+    @for(x of invitations; track x){
+        <div class="card">
+            <h1>{{x.title}} from {{x.createdby.username}}</h1>
+            <div class="buttonDiv">
+                <button (click)="accept(x._id)">ACCEPT INVITATION</button>
+                <button (click)="reject(x._id)">REJECT INVITATION</button>
+            </div>
+        </div>
+    }
+</div>

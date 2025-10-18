@@ -42,6 +42,23 @@ export class Notification implements OnInit {
     });
   }
 
+  reject(id : string){
+    let data = {
+      objectiveId : id
+    }
+     this.http.post<any>('http://localhost:3000/task/reject', data , { withCredentials: true }).subscribe({
+      next: (response) => {
+        console.log(response);
+        alert('request rejected');
+        this.loadData();
+      },
+      error: (error) =>   {
+        console.error(error);
+      }
+    });
+  }
+
+
   loadData() {
      this.http.get<Invitation[]>('http://localhost:3000/auth/getinvitations', { withCredentials: true }).subscribe({
       next: (response) => {

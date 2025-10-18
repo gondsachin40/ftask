@@ -1,0 +1,33 @@
+
+.container{
+    background-color: black;
+    color: white;
+    height: 100vw;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    
+}
+.membersAdd{
+    background-color: white;
+    height: 30%;
+    width: 40%;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.membersAdd > input {
+    width: 50%;
+    height: 30px;
+    border-radius: 20px;
+    padding-left: 10px;
+}
+.membersAdd > button {
+    background-color: black;
+    border-radius: 30px;
+    color: white;
+    border: 2px solid darkgray;
+}

@@ -72,12 +72,15 @@ export class EditTask {
       .get<any>(`http://localhost:3000/task/getTask/${this.taskId}`, { withCredentials: true })
       .subscribe({
         next: (res) => {
-          console.log(res);
-          this.form.value.taskTitle = res.task.taskTitle;
-
-          this.form.value.taskDescription = res.task.taskDescription;
-
-          this.form.value.links = res.task.links;
+          // this.form.value.taskTitle = res.task.taskTitle;
+          // this.form.value.taskDescription = res.task.taskDescription;
+          // this.form.value.links = res.task.links;
+          // this.form.setValue({})
+          this.form.patchValue({
+            taskTitle: res.task.taskTitle,
+            taskDescription: res.task.taskDescription,
+            links: res.task.links
+          })
         },
         error: (err) => {
           console.log(err);

@@ -102,6 +102,9 @@ export class Navbar extends TuiPortals implements OnInit {
       }
     })
   }
+  invitations(){
+    this.router.navigate(['notification'])
+  }
   call() {
     console.log(this.url);
     this.username = this.service.getname();
@@ -112,7 +115,6 @@ export class Navbar extends TuiPortals implements OnInit {
       this.isTaskPage = false;
     } else if (this.url === '/task') {
       this.isTaskPage = true;
-      // this.isAllPage = false;
       this.isAllPage = false
     }
     this.change.detectChanges();

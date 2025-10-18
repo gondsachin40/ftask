@@ -4,7 +4,10 @@
     <h1>Welcome back</h1>
     }
     @if(login){
-    <button appearance="primary" tuiButton type="button" class="navButton" routerLink="all">
+    <button (click) = "invitations()" appearance="primary" tuiButton type="button" class="navButton" routerLink="all">
+        invitations
+    </button>
+        <button appearance="primary" tuiButton type="button" class="navButton" routerLink="all">
         all
     </button>
     <button appearance="primary" tuiButton type="button" class="navButton" style="color: white;">

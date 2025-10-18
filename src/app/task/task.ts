@@ -206,4 +206,22 @@ export class Task implements OnInit {
     let k = this.route.snapshot.paramMap.get('id');
     this.router.navigate([`/addtask/${k}`]);
   }
+  addmember(Name : string){
+    if(Name === "") return;
+    console.log('naam' , Name)
+    let k = this.route.snapshot.paramMap.get('id');
+    let data = {
+    username : Name,
+    objectiveId : k
+    };
+     this.http.post<any>('http://localhost:3000/task/addmember', data , { withCredentials: true }).subscribe({
+      next: (response) => {
+        console.log(response);
+        // this.ngOnInit();
+      },
+      error: (error) =>   {
+        console.error(error);
+      }
+    });
+  }
 }

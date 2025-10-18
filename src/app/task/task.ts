@@ -79,7 +79,7 @@ import { ElementRef } from '@angular/core';
 export class Task implements OnInit {
   tasks: Taskinfo[] = [];
   links: string[] = [];
-  members : string[] = [];
+  members: string[] = [];
   @ViewChild('cardContainer', { static: false }) cardContainer!: ElementRef<HTMLDivElement>
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
   protected readonly form = new FormGroup({
@@ -167,25 +167,26 @@ export class Task implements OnInit {
         .subscribe({
           next: (response) => {
             const formattedTasks = response.tasks
-              .filter((task : any): task is ApiRes => task !== null && typeof task === 'object') // filter out nulls
-              .map((task : any) => ({
+              .filter((task: any): task is ApiRes => task !== null && typeof task === 'object') // filter out nulls
+              .map((task: any) => ({
                 ...task,
                 createdAtFormatted: task.createdAt ? this.formatDate(task.createdAt) : 'N/A',
                 updatedAtFormatted: task.updatedAt ? this.formatDate(task.updatedAt) : 'N/A',
               }));
             console.log(response.members);
             this.tasks.push(...formattedTasks)
-             this.http.post<any>(`http://localhost:3000/auth/getusers`,response.members ,  {withCredentials: true,}).subscribe({
-          next: (response) => {
-          let upd = [];
-           for(let i = 0; i < response.length;i++){
-            upd.push(response[i].username);
-           }
-           this.members.push(...upd);
-          },
-          error: (err)=>{
-            console.log(err);
-          }});
+            this.http.post<any>(`http://localhost:3000/auth/getusers`, response.members, { withCredentials: true, }).subscribe({
+              next: (response) => {
+                let upd = [];
+                for (let i = 0; i < response.length; i++) {
+                  upd.push(response[i].username);
+                }
+                this.members.push(...upd);
+              },
+              error: (err) => {
+                console.log(err);
+              }
+            });
 
           },
           error: (err) => {
@@ -206,20 +207,20 @@ export class Task implements OnInit {
     let k = this.route.snapshot.paramMap.get('id');
     this.router.navigate([`/addtask/${k}`]);
   }
-  addmember(Name : string){
-    if(Name === "") return;
-    console.log('naam' , Name)
+  addmember(Name: string) {
+    if (Name === "") return;
+    console.log('naam', Name)
     let k = this.route.snapshot.paramMap.get('id');
     let data = {
-    username : Name,
-    objectiveId : k
+      username: Name,
+      objectiveId: k
     };
-     this.http.post<any>('http://localhost:3000/task/addmember', data , { withCredentials: true }).subscribe({
+    this.http.post<any>('http://localhost:3000/task/addmember', data, { withCredentials: true }).subscribe({
       next: (response) => {
         console.log(response);
         // this.ngOnInit();
       },
-      error: (error) =>   {
+      error: (error) => {
         console.error(error);
       }
     });

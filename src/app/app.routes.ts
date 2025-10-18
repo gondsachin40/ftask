@@ -9,6 +9,7 @@ import { AddTask } from './add-task/add-task';
 import { EditTask } from './edit-task/edit-task';
 import { Members } from './members/members';
 import { Notification } from './notification/notification';
+import { Notfound } from './notfound/notfound';
 export const routes: Routes = [
     { path: '', component: Home },
     { path: 'login', component: Login },
@@ -18,6 +19,7 @@ export const routes: Routes = [
     { path: 'addTask/:id', component: AddTask },
     { path: 'addObjective', component: AddObjective },
     { path: 'edit/:id', component: EditTask },
-    { path: 'members/:id',component:Members},
-    { path : 'notification' , component : Notification}
+    { path: 'members/:id', component: Members },
+    { path: 'notification', component: Notification },
+    { path: '**', component: Notfound }
 ];

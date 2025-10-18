@@ -1,0 +1,50 @@
+/*
+  CSS to center the text and image, and apply padding-top
+*/
+
+/* 1. Reset/Target the root elements */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    /* Optional: A light background color */
+    font-family: Arial, sans-serif;
+}
+
+/* 2. Target the main container (the <div>) */
+div {
+    height: 100%;
+    width: 100%;
+
+    /* --- Flexbox Setup --- */
+    display: flex;
+    flex-direction: column;
+    /* Stack children vertically (h1 then img) */
+    justify-content: flex-start;
+    /* Align content to the top */
+    align-items: center;
+    /* Center children horizontally */
+
+    /* Apply padding from the top to push everything down */
+    padding-top: 10vh;
+    /* Using 'vh' (viewport height) is great for centering */
+    box-sizing: border-box;
+}
+
+/* 3. Style the Text (h1) */
+h1 {
+    color: #333;
+    margin-bottom: 30px;
+    /* Space between the text and the image */
+    font-size: 2em;
+}
+
+/* 4. Style the Image */
+img {
+    max-width: 80%;
+    /* Limit the size so it doesn't look too big */
+    height: auto;
+    display: block;
+}

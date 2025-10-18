@@ -1,12 +1,17 @@
+@if(invitations.length == 0){
+<div style="width: 100%; height: 600px; justify-content: center; display: flex;">
+    <img src="https://media.tenor.com/8QBZ9ZJDKywAAAAe/no-content.png" />
+</div>
+}@else{
 <div class="cardContainer">
-
     @for(x of invitations; track x){
-        <div class="card">
-            <h1>{{x.title}} from {{x.createdby.username}}</h1>
-            <div class="buttonDiv">
-                <button (click)="accept(x._id)">ACCEPT INVITATION</button>
-                <button (click)="reject(x._id)">REJECT INVITATION</button>
-            </div>
+    <div class="card">
+        <h1>{{x.title}} from {{x.createdby.username}}</h1>
+        <div class="buttonDiv">
+            <button (click)="accept(x._id)">ACCEPT INVITATION</button>
+            <button (click)="reject(x._id)">REJECT INVITATION</button>
         </div>
+    </div>
     }
 </div>
+}

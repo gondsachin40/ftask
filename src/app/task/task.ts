@@ -79,7 +79,7 @@ import { ElementRef } from '@angular/core';
 export class Task implements OnInit {
   tasks: Taskinfo[] = [];
   links: string[] = [];
-  @ViewChild('cardContainer',{static:false}) cardContainer!: ElementRef<HTMLDivElement>
+  @ViewChild('cardContainer', { static: false }) cardContainer!: ElementRef<HTMLDivElement>
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
   protected readonly form = new FormGroup({
     title: new FormControl(''),
@@ -145,18 +145,18 @@ export class Task implements OnInit {
       });
   }
   ngAfterViewInit() {
-    const el = this.cardContainer.nativeElement
-    el.addEventListener('wheel', (event:WheelEvent) =>{
-      event.preventDefault();
-      el.scrollLeft += event.deltaY;
-    })
-    if (this.tasks.length > 0) {
-    el.style.setProperty('padding', '10px', 'important');
-    }
+    // const el = this.cardContainer.nativeElement
+    // el.addEventListener('wheel', (event:WheelEvent) =>{
+    //   event.preventDefault();
+    //   el.scrollLeft += event.deltaY;
+    // })
+    // if (this.tasks.length > 0) {
+    // el.style.setProperty('padding', '10px', 'important');
+    // }
   }
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    
+
     console.log('page load task')
     if (id) {
       this.http

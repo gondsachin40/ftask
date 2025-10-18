@@ -1,3 +1,4 @@
+
 <div class="container">
   @if (tasks.length > 0){
 
@@ -20,6 +21,13 @@
     }
   </div>
   }
+
+
+  <!-- members -->
+   <h1 style="color: white;">members</h1>
+  @for(x of members; track x){
+  <h1 style="color:  white">{{x}}</h1>
+}
   <div id="formDiv">
     <form tuiAppearance="floating" tuiCardLarge tuiForm="m" [formGroup]="form" [style.max-width.rem]="32"
       [style.max-height.rem]="19" (submit)="onSubmit()">
@@ -46,3 +54,5 @@
       </footer>
     </form>
   </div>
+</div>
+

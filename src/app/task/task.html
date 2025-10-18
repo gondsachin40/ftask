@@ -7,9 +7,13 @@
     <div class="task-card">
       <h2 class="task-title">{{ x.taskTitle }}</h2>
       <p class="task-desc">{{ x.taskDescription }}</p>
+      <ul>
       @for (y of x.links;track y){
-      <a href="{{y}}">{{y}}</a>
+        <li>
+          <a href="{{y}}">{{y}}</a>
+        </li>
       }
+    </ul>
       <p class="task-date">{{ x.createdAtFormatted }}</p>
       <button (click)="edittask(x._id)" class="taskButton">Edit</button>
       <button (click)="deletetask(x._id)" class="taskButton">Delete</button>

@@ -8,9 +8,10 @@
       @for(items of ans; track items){
         <div class="card">
           <button  type="button" class="divButton" (click)="goToTask(items.id)">
-            <h1 tuiTitle >
+            <h3 tuiTitle >
               {{items.title}}
-            </h1>
+            </h3>
+            <h3>></h3>
           </button>
         </div>
       }

@@ -1,3 +1,5 @@
+*{
+}
 .centered-row {
   max-width: 800px;
   margin: 0 auto;
@@ -48,14 +50,24 @@ html,body{
 }
 .divButton {
   width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: white;
   color: black;
   border: 1.5px solid white;
   height: fit-content;
-  border-radius: 30px;
-  padding: 25px;
+  border-radius: 12px;
+  padding: 20px;
   margin-top: 10px;
-  border: 5px solid darkgrey;
+  border: 5px solid #101010;
+  transition: 10s margin;
+  transition: 5s width;
+}
+.divButton:hover{
+  border: 5px solid darkgray;
+  margin: 4px;
+  width: 80.5;
 }
 .container{
   height: 100px;
@@ -71,7 +83,7 @@ html,body{
   width: 100%;
   border-radius: 10px;
   background: #fff;
-  border: 2px dashed #c2cdda;
+  border: 2px dashed 	#080808;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,7 +93,7 @@ html,body{
 .container #custom-btn{
   margin-top: 30px;
   display: block;
-  width: 80%;
+  width: 70%;
   height: 50px;
   border: none;
   outline: none;
@@ -94,7 +106,10 @@ html,body{
   cursor: pointer;
   background-color: white;
   color: black;
-  border: 5px solid darkgrey;
+  transition: 5s padding;
+}
+.container #custom-btn:hover{
+  padding: 5px;
 }
 .allContainer {
   background-color: black;

@@ -1,0 +1,147 @@
+.editTaskContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--color-deep-black);
+  color: var(--color-pure-white);
+}
+
+.editTaskContainer form {
+  background-color: var(--color-medium-grey);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-inner-soft), var(--shadow-subtle);
+  border: 1px solid var(--color-light-grey);
+  width: 100%;
+  max-width: 32rem;
+}
+
+.editTaskContainer p {
+  color: var(--color-pure-white);
+  margin-bottom: var(--spacing-md);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.85rem; /* Smaller font size for microcopy */
+}
+
+.editTaskContainer label {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.8rem; /* Smaller font size for labels */
+  color: var(--color-pure-white);
+}
+
+.editTaskContainer label.custom-label {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.8rem;
+  color: var(--color-pure-white);
+  display: block;
+  margin-bottom: var(--spacing-xs);
+}
+
+.editTaskContainer .form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.editTaskContainer .formInput {
+  background-color: var(--color-dark-grey);
+  color: var(--color-pure-white);
+  border: 1px solid var(--color-light-grey);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-sm);
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: var(--shadow-subtle);
+  transition: border-color var(--animation-duration) var(--animation-ease), box-shadow var(--animation-duration) var(--animation-ease);
+}
+
+.editTaskContainer .formInput:focus {
+  outline: none;
+  border-color: var(--color-soft-grey);
+  box-shadow: 0 0 0 3px rgba(46, 46, 46, 0.5);
+}
+
+.editTaskContainer .link-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-sm);
+}
+
+.editTaskContainer .chip {
+  background-color: var(--color-dark-grey);
+  color: var(--color-pure-white);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-pill);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 0.8rem;
+}
+
+.editTaskContainer .clear-button {
+  background: transparent;
+  border: none;
+  color: var(--color-pure-white);
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.8rem;
+  line-height: 1;
+  margin-left: var(--spacing-xs);
+}
+
+.editTaskContainer button {
+  background: linear-gradient(180deg, var(--color-dark-grey) 0%, var(--color-medium-grey) 100%);
+  color: var(--color-pure-white);
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: background var(--animation-duration) var(--animation-ease), transform var(--animation-duration) var(--animation-ease), box-shadow var(--animation-duration) var(--animation-ease);
+  box-shadow: var(--shadow-subtle);
+  margin-left: var(--spacing-sm);
+}
+
+.editTaskContainer button:hover {
+  background: linear-gradient(180deg, var(--color-light-grey) 0%, var(--color-soft-grey) 100%);
+  transform: translateY(var(--hover-lift)) scale(var(--hover-scale));
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+.editTaskContainer button.formButton {
+  background: linear-gradient(180deg, var(--color-dark-grey) 0%, var(--color-medium-grey) 100%);
+  color: var(--color-pure-white);
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: background var(--animation-duration) var(--animation-ease), transform var(--animation-duration) var(--animation-ease), box-shadow var(--animation-duration) var(--animation-ease);
+  box-shadow: var(--shadow-subtle);
+  margin-left: var(--spacing-sm);
+}
+
+.editTaskContainer button.formButton:hover {
+  background: linear-gradient(180deg, var(--color-light-grey) 0%, var(--color-soft-grey) 100%);
+  transform: translateY(var(--hover-lift)) scale(var(--hover-scale));
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+.editTaskContainer button.secondary-button {
+  background: transparent;
+  border: 1px solid var(--color-light-grey);
+  color: var(--color-pure-white);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: background var(--animation-duration) var(--animation-ease), transform var(--animation-duration) var(--animation-ease), box-shadow var(--animation-duration) var(--animation-ease);
+  box-shadow: none;
+}
+
+.editTaskContainer button.secondary-button:hover {
+  background-color: var(--color-dark-grey);
+  transform: translateY(var(--hover-lift)) scale(var(--hover-scale));
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.6);
+}

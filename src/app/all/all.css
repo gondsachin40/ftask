@@ -5,65 +5,87 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 16px;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
   box-sizing: border-box;
-  flex-wrap: wrap; /* Allows wrapping on small screens */
+  flex-wrap: wrap;
 }
 
 /* Responsive behavior for smaller screens */
 @media (max-width: 768px) {
   .centered-row {
     flex-direction: column;
-    align-items: stretch; /* or center, depending on your design */
+    align-items: stretch;
   }
 }
 
 
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
-*{
+* {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
 }
 html,body{
-  display: grid;
-  height: 100%;
-  place-items: center;
-  text-align: center;
+  background-color: var(--color-deep-black);
+  color: var(--color-pure-white);
+  display: block; /* Change to block for overall layout control */
+  height: auto; /* Allow height to adjust to content */
+  place-items: unset; /* Remove specific grid placement */
+  text-align: left; /* Adjust text alignment */
 }
 .card-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%; 
+  width: 100%;
+  padding: var(--spacing-md);
+  gap: var(--spacing-md);
 }
 .card {
   width: 80%;
+  background-color: var(--color-medium-grey);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-inner-soft), var(--shadow-subtle);
+  border: 1px solid var(--color-light-grey);
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--color-pure-white);
+  transition: transform var(--animation-duration) var(--animation-ease), box-shadow var(--animation-duration) var(--animation-ease);
+}
+.card:hover {
+  transform: translateY(var(--hover-lift)) scale(var(--hover-scale));
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
 }
 .divButton {
   width: 80%;
-  background-color: white;
-  color: black;
-  border: 1.5px solid white;
+  background: linear-gradient(180deg, var(--color-dark-grey) 0%, var(--color-medium-grey) 100%);
+  color: var(--color-pure-white);
+  border: 1px solid var(--color-light-grey);
   height: fit-content;
-  border-radius: 30px;
-  padding: 25px;
-  margin-top: 10px;
-  border: 5px solid darkgrey;
+  border-radius: var(--border-radius-pill);
+  padding: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+  box-shadow: var(--shadow-subtle);
+  transition: background var(--animation-duration) var(--animation-ease), transform var(--animation-duration) var(--animation-ease), box-shadow var(--animation-duration) var(--animation-ease);
+}
+.divButton:hover {
+  background: linear-gradient(180deg, var(--color-light-grey) 0%, var(--color-soft-grey) 100%);
+  transform: translateY(var(--hover-lift)) scale(var(--hover-scale));
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.6);
 }
 .container{
-  height: 100px;
   width: 100%;
+  height: auto; /* Allow height to adjust to content */
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  padding: var(--spacing-md);
 }
 .container .wrapper{
   position: relative;
@@ -79,25 +101,46 @@ html,body{
 }
 
 .container #custom-btn{
-  margin-top: 30px;
+  margin-top: var(--spacing-xl);
   display: block;
   width: 80%;
   height: 50px;
   border: none;
   outline: none;
-  border-radius: 30px;
-  color: #fff;
+  border-radius: var(--border-radius-pill);
+  color: var(--color-pure-white);
   font-size: 18px;
   font-weight: 500;
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
-  background-color: white;
-  color: black;
-  border: 5px solid darkgrey;
+  background: linear-gradient(180deg, var(--color-dark-grey) 0%, var(--color-medium-grey) 100%);
+  border: 1px solid var(--color-light-grey);
+  box-shadow: var(--shadow-subtle);
+  transition: background var(--animation-duration) var(--animation-ease), transform var(--animation-duration) var(--animation-ease), box-shadow var(--animation-duration) var(--animation-ease);
+}
+.container #custom-btn:hover {
+  background: linear-gradient(180deg, var(--color-light-grey) 0%, var(--color-soft-grey) 100%);
+  transform: translateY(var(--hover-lift)) scale(var(--hover-scale));
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.6);
 }
 .allContainer {
-  background-color: black;
+  background-color: var(--color-deep-black);
   height: 100vh;
   overflow: auto;
+  padding: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 95%;
+  }
+
+  .divButton {
+    width: 95%;
+  }
+
+  .container #custom-btn {
+    width: 95%;
+  }
 }

@@ -19,13 +19,13 @@ export class Members {
   }
   getMembers(id: any) {
     this.http
-      .get<any>(`http://localhost:3000/task/getMembers/${id}`, { withCredentials: true })
+      .get<any>(`https://taskshare-1d4b.onrender.com/task/getMembers/${id}`, { withCredentials: true })
       .subscribe({
         next: (response) => {
           let curr = response.members;
           for (let x of curr) {
             this.http
-              .get<any>(`http://localhost:3000/task/getUser/${x}`, { withCredentials: true })
+              .get<any>(`https://taskshare-1d4b.onrender.com/task/getUser/${x}`, { withCredentials: true })
               .subscribe({
                 next: (response) => {
                   this.membersArray.push(response.username)
@@ -53,7 +53,7 @@ addmember(Name : string){
     username : Name,
     objectiveId : k
     };
-     this.http.post<any>('http://localhost:3000/task/addmember', data , { withCredentials: true }).subscribe({
+     this.http.post<any>('https://taskshare-1d4b.onrender.com/task/addmember', data , { withCredentials: true }).subscribe({
       next: (response) => {
         console.log(response);
         // this.ngOnInit();

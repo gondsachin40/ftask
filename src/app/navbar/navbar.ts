@@ -2,32 +2,8 @@ import { KeyValuePipe, NgForOf, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterEvent, RouterLink, RouterLinkActive, Event } from '@angular/router';
-import { tuiAsPortal, TuiPortals, TuiRepeatTimes } from '@taiga-ui/cdk';
 import { User } from '../../services/user';
 import { Router, NavigationEnd } from '@angular/router';
-import {
-  TuiAppearance,
-  TuiButton,
-  TuiDataList,
-  TuiDropdown,
-  TuiDropdownService,
-  TuiIcon,
-  TuiLink,
-  TuiTextfield,
-  TuiTitle,
-} from '@taiga-ui/core';
-import {
-  TuiAvatar,
-  TuiBadge,
-  TuiBadgeNotification,
-  TuiBreadcrumbs,
-  TuiChevron,
-  TuiDataListDropdownManager,
-  TuiFade,
-  TuiSwitch,
-  TuiTabs,
-} from '@taiga-ui/kit';
-import { TuiCardLarge, TuiForm, TuiHeader, TuiNavigation } from '@taiga-ui/layout';
 import { filter } from 'rxjs/internal/operators/filter';
 
 const ICON =
@@ -38,22 +14,14 @@ const ICON =
   imports: [
     FormsModule,
     RouterLink,
-    TuiAppearance,
-    TuiAvatar,
-    TuiButton,
-    TuiDataList,
-    TuiDropdown,
-    TuiNavigation,
-    TuiTabs,
-    TuiTextfield,
 
   ],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [TuiDropdownService, tuiAsPortal(TuiDropdownService)],
+  providers: [],
 })
-export class Navbar extends TuiPortals implements OnInit {
+export class Navbar implements OnInit {
   login: boolean = false;
   isAllPage = false;
   isTaskPage = false;
@@ -87,7 +55,7 @@ export class Navbar extends TuiPortals implements OnInit {
   };
   constructor(private service: User, private router: Router, private change: ChangeDetectorRef) {
     console.log('** construct **')
-    super();
+
     this.login = this.service.isLoggedIn;
     console.log(this.login);
     console.log(this.router.url);

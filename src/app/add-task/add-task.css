@@ -1,0 +1,147 @@
+.addTaskContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--color-deep-black);
+  color: var(--color-pure-white);
+}
+
+.addTaskContainer form {
+  background-color: var(--color-medium-grey);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-inner-soft), var(--shadow-subtle);
+  border: 1px solid var(--color-light-grey);
+  width: 100%;
+  max-width: 32rem;
+}
+
+.addTaskContainer p {
+  color: var(--color-pure-white);
+  margin-bottom: var(--spacing-md);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.85rem; /* Smaller font size for microcopy */
+}
+
+.addTaskContainer label {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.8rem; /* Smaller font size for labels */
+  color: var(--color-pure-white);
+}
+
+.addTaskContainer label.custom-label {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.8rem;
+  color: var(--color-pure-white);
+  display: block;
+  margin-bottom: var(--spacing-xs);
+}
+
+.addTaskContainer .form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.addTaskContainer .formInput {
+  background-color: var(--color-dark-grey);
+  color: var(--color-pure-white);
+  border: 1px solid var(--color-light-grey);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-sm);
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: var(--shadow-subtle);
+  transition: border-color var(--animation-duration) var(--animation-ease), box-shadow var(--animation-duration) var(--animation-ease);
+}
+
+.addTaskContainer .formInput:focus {
+  outline: none;
+  border-color: var(--color-soft-grey);
+  box-shadow: 0 0 0 3px rgba(46, 46, 46, 0.5);
+}
+
+.addTaskContainer .link-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-sm);
+}
+
+.addTaskContainer .chip {
+  background-color: var(--color-dark-grey);
+  color: var(--color-pure-white);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-pill);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 0.8rem;
+}
+
+.addTaskContainer .clear-button {
+  background: transparent;
+  border: none;
+  color: var(--color-pure-white);
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.8rem;
+  line-height: 1;
+  margin-left: var(--spacing-xs);
+}
+
+.addTaskContainer button {
+  background: linear-gradient(180deg, var(--color-dark-grey) 0%, var(--color-medium-grey) 100%);
+  color: var(--color-pure-white);
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: background var(--animation-duration) var(--animation-ease), transform var(--animation-duration) var(--animation-ease), box-shadow var(--animation-duration) var(--animation-ease);
+  box-shadow: var(--shadow-subtle);
+  margin-left: var(--spacing-sm);
+}
+
+.addTaskContainer button:hover {
+  background: linear-gradient(180deg, var(--color-light-grey) 0%, var(--color-soft-grey) 100%);
+  transform: translateY(var(--hover-lift)) scale(var(--hover-scale));
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+.addTaskContainer button.formButton {
+  background: linear-gradient(180deg, var(--color-dark-grey) 0%, var(--color-medium-grey) 100%);
+  color: var(--color-pure-white);
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: background var(--animation-duration) var(--animation-ease), transform var(--animation-duration) var(--animation-ease), box-shadow var(--animation-duration) var(--animation-ease);
+  box-shadow: var(--shadow-subtle);
+  margin-left: var(--spacing-sm);
+}
+
+.addTaskContainer button.formButton:hover {
+  background: linear-gradient(180deg, var(--color-light-grey) 0%, var(--color-soft-grey) 100%);
+  transform: translateY(var(--hover-lift)) scale(var(--hover-scale));
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+.addTaskContainer button.secondary-button {
+  background: transparent;
+  border: 1px solid var(--color-light-grey);
+  color: var(--color-pure-white);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: background var(--animation-duration) var(--animation-ease), transform var(--animation-duration) var(--animation-ease), box-shadow var(--animation-duration) var(--animation-ease);
+  box-shadow: none;
+}
+
+.addTaskContainer button.secondary-button:hover {
+  background-color: var(--color-dark-grey);
+  transform: translateY(var(--hover-lift)) scale(var(--hover-scale));
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.6);
+}

@@ -1,28 +1,38 @@
-<p>edit-task works!</p>
-<form tuiAppearance="floating" tuiCardLarge tuiForm="m" [formGroup]="form" [style.max-width.rem]="32">
-  <tui-textfield>
-    <label tuiLabel>task title</label>
-    <input [placeholder]="[form.value.taskTitle]" id="taskTitle" name="taskTitle" formControlName="taskTitle"
-      type="text" tuiTextfield />
-  </tui-textfield>
-  <tui-textfield>
-    <label tuiLabel>task Description</label>
-    <input [placeholder]="[form.value.taskDescription]" id="taskDescription" name="taskDescription"
-      formControlName="taskDescription" type="text" tuiTextfield />
-  </tui-textfield>
-  <tui-textfield multi [style.width.rem]=" 15" [tuiTextfieldCleaner]="false">
-    <label tuiLabel>Links</label>
-    <input [placeholder]="[form.value.links]" tuiInputChip formControlName="links" [value]="[form.value.links]" />
-    <button appearance="icon" iconStart="@tui.x" size="m" tuiIconButton type="button">
-      Clear
-    </button>
-    <tui-input-chip *tuiItem />
-  </tui-textfield>
-  <footer>
-    <button appearance="secondary" tuiButton type="button">Cancel</button>
-    <button tuiButton type="submit" (click)="onSubmit()">Add Task</button>
-  </footer>
-</form>
-<pre>
-  {{form.value | json}}
-</pre>
+<div class="editTaskContainer">
+  <form class="custom-form" [formGroup]="form">
+    <div class="form-group">
+      <label for="taskTitle" class="custom-label">task title</label>
+      <input [placeholder]="form.value.taskTitle" id="taskTitle" name="taskTitle" formControlName="taskTitle"
+        type="text" class="formInput" />
+    </div>
+    <div class="form-group">
+      <label for="taskDescription" class="custom-label">task Description</label>
+      <input [placeholder]="form.value.taskDescription" id="taskDescription" name="taskDescription"
+        formControlName="taskDescription" type="text" class="formInput" />
+    </div>
+    <div class="form-group">
+      <label for="links" class="custom-label">Links</label>
+      <input
+        placeholder="Add links, press Enter to add"
+        id="links"
+        name="links"
+        formControlName="links"
+        type="text"
+        class="formInput"
+        (keydown.enter)="addLink($event)"
+      />
+      <div class="link-chips">
+        @for (link of form.get('links')?.value; track link) {
+          <span class="chip">{{ link }} <button class="clear-button" (click)="removeLink(link)">x</button></span>
+        }
+      </div>
+    </div>
+    <footer>
+      <button type="button" class="formButton secondary-button">Cancel</button>
+      <button type="submit" class="formButton primary-cta-sheen" (click)="onSubmit()">Edit Task</button>
+    </footer>
+  </form>
+  <pre>
+    {{form.value | json}}
+  </pre>
+</div>

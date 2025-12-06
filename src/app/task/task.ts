@@ -3,24 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import {
-  TuiAppearance,
-  TuiButton,
-  TuiError,
-  TuiIcon,
-  TuiNotification,
-  TuiTextfield,
-  TuiTitle,
-} from '@taiga-ui/core';
-import { TuiFieldErrorPipe, TuiSegmented, TuiSwitch, TuiTooltip } from '@taiga-ui/kit';
-import { TuiCardLarge, TuiForm, TuiHeader, TuiCardMedium } from '@taiga-ui/layout';
-import { TuiInputChip } from '@taiga-ui/kit';
-
-import {
-  TuiInputDateModule,
-  TuiTextfieldControllerModule,
-  TuiUnfinishedValidator,
-} from '@taiga-ui/legacy';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { EditTask } from '../edit-task/edit-task';
@@ -45,6 +27,7 @@ interface Taskinfo {
   createdAt: string;
   updatedAt: string;
   __v: number;
+  completed: boolean; /* Add completed status */
 }
 import { ViewChild } from '@angular/core';
 import { ElementRef } from '@angular/core';
@@ -52,26 +35,8 @@ import { ElementRef } from '@angular/core';
   selector: 'app-task',
   standalone: true,
   imports: [
-    TuiInputChip,
     ReactiveFormsModule,
-    TuiAppearance,
-    TuiButton,
-    TuiCardLarge,
-    TuiError,
-    TuiFieldErrorPipe,
-    TuiInputDateModule,
-    TuiTextfieldControllerModule,
-    TuiUnfinishedValidator,
-    TuiForm,
-    TuiHeader,
-    TuiIcon,
-    TuiNotification,
-    TuiSegmented,
-    TuiSwitch,
-    TuiTextfield,
-    TuiTitle,
-    TuiTooltip,
-    TuiCardMedium
+
   ],
   templateUrl: './task.html',
   styleUrl: './task.css',
@@ -83,10 +48,42 @@ export class Task implements OnInit {
   @ViewChild('cardContainer', { static: false }) cardContainer!: ElementRef<HTMLDivElement>
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
   protected readonly form = new FormGroup({
-    title: new FormControl(''),
-    description: new FormControl(''),
-    links: new FormControl(this.links),
+    title: new FormControl<string>(''),
+    description: new FormControl<string>(''),
+    links: new FormControl<string[]>([], { nonNullable: false }),
   });
+
+  addLink(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const value = input.value.trim();
+    if (value) {
+      const currentLinks = this.form.get('links')?.value || [];
+      this.form.get('links')?.setValue([...currentLinks, value]);
+      input.value = '';
+    }
+    event.preventDefault();
+  }
+
+  removeLink(linkToRemove: string) {
+    const currentLinks = this.form.get('links')?.value || [];
+    this.form.get('links')?.setValue(currentLinks.filter((link: string) => link !== linkToRemove));
+  }
+
+  markAsDone(task: Taskinfo): void {
+    const newStatus = !task.completed;
+    this.http.post<any>(`https://taskshare-1d4b.onrender.com/task/updateTaskStatus/${task._id}`, { completed: newStatus }, { withCredentials: true })
+      .subscribe({
+        next: (response) => {
+          console.log('Task status updated:', response);
+          task.completed = newStatus; // Update UI immediately
+        },
+        error: (error) => {
+          console.error('Failed to update task status:', error); // Log full error object
+          alert('Failed to update task status.');
+        }
+      });
+  }
+
   edittask(id: String) {
     console.log(id)
     this.router.navigate(['/edit', id])
@@ -95,7 +92,7 @@ export class Task implements OnInit {
     if (!id) return;
     console.log(id);
     this.http
-      .post(`http://localhost:3000/task/deleteTask/${id}`, {}, { withCredentials: true })
+      .post(`https://taskshare-1d4b.onrender.com/task/deleteTask/${id}`, {}, { withCredentials: true })
       .subscribe({
         next: (response: any) => {
           this.tasks = this.tasks.filter(task => task._id !== id);
@@ -115,7 +112,7 @@ export class Task implements OnInit {
       tasksId: this.route.snapshot.paramMap.get('id'),
     };
     this.http
-      .post('http://localhost:3000/task/addTask', body, { withCredentials: true })
+      .post('https://taskshare-1d4b.onrender.com/task/addTask', body, { withCredentials: true })
       .subscribe({
         next: (response: any) => {
           console.log('API Response:', response);
@@ -134,6 +131,7 @@ export class Task implements OnInit {
             createdAtFormatted,
             updatedAtFormatted,
             __v: response.__v,
+            completed: false, // Initialize completed status
           };
 
           this.tasks.push(formattedTask);
@@ -161,7 +159,7 @@ export class Task implements OnInit {
     console.log('page load task')
     if (id) {
       this.http
-        .get<any>(`http://localhost:3000/task/getObjective/${id}`, {
+        .get<any>(`https://taskshare-1d4b.onrender.com/task/getObjective/${id}`, {
           withCredentials: true,
         })
         .subscribe({
@@ -172,10 +170,11 @@ export class Task implements OnInit {
                 ...task,
                 createdAtFormatted: task.createdAt ? this.formatDate(task.createdAt) : 'N/A',
                 updatedAtFormatted: task.updatedAt ? this.formatDate(task.updatedAt) : 'N/A',
+                completed: task.completed || false, // Initialize completed status
               }));
             console.log(response.members);
             this.tasks.push(...formattedTasks)
-            this.http.post<any>(`http://localhost:3000/auth/getusers`, response.members, { withCredentials: true, }).subscribe({
+            this.http.post<any>(`https://taskshare-1d4b.onrender.com/auth/getusers`, response.members, { withCredentials: true, }).subscribe({
               next: (response) => {
                 let upd = [];
                 for (let i = 0; i < response.length; i++) {
@@ -215,7 +214,7 @@ export class Task implements OnInit {
       username: Name,
       objectiveId: k
     };
-    this.http.post<any>('http://localhost:3000/task/addmember', data, { withCredentials: true }).subscribe({
+    this.http.post<any>('https://taskshare-1d4b.onrender.com/task/addmember', data, { withCredentials: true }).subscribe({
       next: (response) => {
         console.log(response);
         // this.ngOnInit();

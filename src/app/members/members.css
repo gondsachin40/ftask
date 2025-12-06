@@ -1,33 +1,107 @@
 
 .container{
-    background-color: black;
-    color: white;
-    height: 100vw;
+    background-color: var(--color-deep-black);
+    color: var(--color-pure-white);
+    min-height: 100vh; /* Use min-height for flexible content */
     width: 100%;
     display: flex;
     justify-content: space-around;
     flex-direction: row;
-    
+    align-items: flex-start; /* Align items to the top for better stacking */
+    padding: var(--spacing-lg);
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: var(--spacing-xl);
 }
+
+.container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-basis: 45%; /* Distribute space for member list */
+  max-width: 45%;
+}
+
+.container li {
+  background-color: var(--color-dark-grey);
+  margin-bottom: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-light-grey);
+  box-shadow: var(--shadow-subtle);
+  font-size: 1rem;
+}
+
 .membersAdd{
-    background-color: white;
-    height: 30%;
-    width: 40%;
-    border-radius: 30px;
+    background-color: var(--color-medium-grey);
+    height: fit-content;
+    width: 45%; /* Distribute space for add member section */
+    max-width: 45%;
+    border-radius: var(--border-radius-lg);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-inner-soft), var(--shadow-subtle);
+    border: 1px solid var(--color-light-grey);
+}
+.membersAdd > h1 {
+  color: var(--color-pure-white);
+  font-size: 1.8rem;
+  margin-bottom: var(--spacing-md);
 }
 .membersAdd > input {
-    width: 50%;
-    height: 30px;
-    border-radius: 20px;
-    padding-left: 10px;
+    width: 80%; /* Adjust input width for better fit */
+    height: 40px; /* Increase height for better touch target */
+    border-radius: var(--border-radius-md);
+    padding-left: var(--spacing-md);
+    background-color: var(--color-dark-grey);
+    color: var(--color-pure-white);
+    border: 1px solid var(--color-light-grey);
+    box-shadow: var(--shadow-subtle);
+    margin-bottom: var(--spacing-md);
+    transition: border-color var(--animation-duration) var(--animation-ease), box-shadow var(--animation-duration) var(--animation-ease);
+}
+.membersAdd > input:focus {
+  outline: none;
+  border-color: var(--color-soft-grey);
+  box-shadow: 0 0 0 3px rgba(46, 46, 46, 0.5);
 }
 .membersAdd > button {
-    background-color: black;
-    border-radius: 30px;
-    color: white;
-    border: 2px solid darkgray;
+    background: linear-gradient(180deg, var(--color-dark-grey) 0%, var(--color-medium-grey) 100%);
+    border-radius: var(--border-radius-pill);
+    color: var(--color-pure-white);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    cursor: pointer;
+    transition: background var(--animation-duration) var(--animation-ease), transform var(--animation-duration) var(--animation-ease), box-shadow var(--animation-duration) var(--animation-ease);
+    box-shadow: var(--shadow-subtle);
+    width: 80%; /* Match input width */
+    max-width: 200px; /* Limit button width */
+}
+.membersAdd > button:hover {
+  background: linear-gradient(180deg, var(--color-light-grey) 0%, var(--color-soft-grey) 100%);
+  transform: translateY(var(--hover-lift)) scale(var(--hover-scale));
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-md);
+  }
+
+  .container ul,
+  .membersAdd {
+    width: 95%;
+    max-width: 95%;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .membersAdd > input,
+  .membersAdd > button {
+    width: 90%;
+  }
 }

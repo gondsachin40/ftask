@@ -1,35 +1,20 @@
 <div class="registerContainer">
 
-  <form tuiAppearance="floating" tuiCardLarge tuiForm="l" (submit)="onSubmit()" [formGroup]="form" [style.width.rem]="32">
-    <header tuiHeader>
-      <h2 tuiTitle>Register</h2>
+  <form class="custom-form" (submit)="onSubmit()" [formGroup]="form">
+    <header class="form-header">
+      <h2 class="form-title">Register</h2>
     </header>
-    <tui-textfield>
-      <label tuiLabel>Username</label>
-      <input placeholder="john.wick" id="username" name="username" formControlName="username" type="text" tuiTextfield />
-    </tui-textfield>
-    <tui-textfield>
-      <label tuiLabel>Password</label>
-      <input placeholder="john@wick.com"  formControlName="password" id="password"name="password" type="password" tuiTextfield/>
-    </tui-textfield>
+    <div class="form-group">
+      <label for="username" class="custom-label">Username</label>
+      <input placeholder="john.wick" id="username" name="username" formControlName="username" type="text" class="formInput" />
+    </div>
+    <div class="form-group">
+      <label for="password" class="custom-label">Password</label>
+      <input placeholder="Create your password"  formControlName="password" id="password" name="password" type="password" class="formInput"/>
+    </div>
     <footer>
-      <button tuiButton type="submit">Submit</button>
+      <button class="formButton primary-cta-sheen" type="submit">Register</button>
+
     </footer>
   </form>
-  <!-- <div class="login-container">
-    <form (submit)="onSubmit()" class="login-form">
-      <div class="form-group">
-        <label for="username">username</label>
-        <input type="text" id="username" [(ngModel)]="username" name="username" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" [(ngModel)]="password" name="password" required>
-      </div>
-      
-      <button type="submit" class="login-btn">Login</button>
-      <button type="button" (click)="goToRegister()">New Register</button>
-    </form>
-  </div> -->
 </div>

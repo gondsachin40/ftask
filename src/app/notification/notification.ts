@@ -30,7 +30,7 @@ export class Notification implements OnInit {
     let data = {
       objectiveId : id
     }
-     this.http.post<any>('http://localhost:3000/task/accept', data , { withCredentials: true }).subscribe({
+     this.http.post<any>('https://taskshare-1d4b.onrender.com/task/accept', data , { withCredentials: true }).subscribe({
       next: (response) => {
         console.log(response);
         alert('request accepted');
@@ -46,7 +46,7 @@ export class Notification implements OnInit {
     let data = {
       objectiveId : id
     }
-     this.http.post<any>('http://localhost:3000/task/reject', data , { withCredentials: true }).subscribe({
+     this.http.post<any>('https://taskshare-1d4b.onrender.com/task/reject', data , { withCredentials: true }).subscribe({
       next: (response) => {
         console.log(response);
         alert('request rejected');
@@ -60,7 +60,7 @@ export class Notification implements OnInit {
 
 
   loadData() {
-     this.http.get<Invitation[]>('http://localhost:3000/auth/getinvitations', { withCredentials: true }).subscribe({
+     this.http.get<Invitation[]>('https://taskshare-1d4b.onrender.com/auth/getinvitations', { withCredentials: true }).subscribe({
       next: (response) => {
         this.invitations = response;
         console.log(this.invitations);

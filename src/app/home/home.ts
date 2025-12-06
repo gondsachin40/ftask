@@ -1,26 +1,22 @@
-import { Component } from '@angular/core';
-import { TuiLink } from '@taiga-ui/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { TuiFloatingContainer} from '@taiga-ui/kit';
-import { TuiButton } from '@taiga-ui/core';
+
 @Component({
   standalone:true,
   selector: 'app-home',
   imports: [RouterLink,
-    TuiFloatingContainer,
-    TuiButton
   ],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
-export class Home {
+export class Home implements OnInit {
   objectives : any = []
   constructor(private http: HttpClient,private router:Router) {
 
   }
   ngOnInit (){
-    this.http.get<any>('http://localhost:3000/task/all', { withCredentials: true }).subscribe({
+    this.http.get<any>('https://taskshare-1d4b.onrender.com/task/all', { withCredentials: true }).subscribe({
       next: (response) => {
         console.log('API response:', response);
         let curr = response.objectives;

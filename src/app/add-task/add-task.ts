@@ -1,57 +1,19 @@
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TuiDay } from '@taiga-ui/cdk'
 import { JsonPipe } from '@angular/common';
-import { TuiInputChip } from '@taiga-ui/kit';
-import { TuiItem } from '@taiga-ui/cdk';
-import { TuiBooleanHandler } from '@taiga-ui/cdk';
 import { Router } from '@angular/router';
-import {
-    TuiAppearance,
-    TuiButton,
-    TuiError,
-    TuiIcon,
-    TuiNotification,
-    TuiTextfield,
-    TuiTitle,
-} from '@taiga-ui/core';
-import { TuiFieldErrorPipe, TuiSegmented, TuiSwitch, TuiTooltip } from '@taiga-ui/kit';
-import { TuiCardLarge, TuiForm, TuiHeader } from '@taiga-ui/layout';
-import {
-    TuiInputDateModule,
-    TuiTextfieldControllerModule,
-    TuiUnfinishedValidator,
-} from '@taiga-ui/legacy'
 import { HttpClient } from '@angular/common/http';
 @Component({
     standalone: true,
     selector: 'add-task'
     ,
     imports: [
-        TuiInputChip,
         JsonPipe,
         AsyncPipe,
         NgIf,
         ReactiveFormsModule,
-        TuiAppearance,
-        TuiButton,
-        TuiCardLarge,
-        TuiError,
-        TuiFieldErrorPipe,
-        TuiInputDateModule,
-        TuiTextfieldControllerModule,
-        TuiUnfinishedValidator,
-        TuiForm,
-        TuiHeader,
-        TuiIcon,
-        TuiNotification,
-        TuiSegmented,
-        TuiSwitch,
-        TuiTextfield,
-        TuiTitle,
-        TuiTooltip,
-        AsyncPipe,
+
     ],
     templateUrl: './add-task.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -60,10 +22,26 @@ export class AddTask {
     constructor(private router: Router, private http: HttpClient) { }
     protected readonly links = [...'']
     protected readonly form = new FormGroup({
-        taskTitle: new FormControl('', Validators.required),
-        taskDescription: new FormControl('', Validators.required),
-        links: new FormControl(this.links, { nonNullable: false }),
+        taskTitle: new FormControl<string>('', Validators.required),
+        taskDescription: new FormControl<string>('', Validators.required),
+        links: new FormControl<string[]>([], { nonNullable: false }),
     });
+    addLink(event: Event) {
+      const input = event.target as HTMLInputElement;
+      const value = input.value.trim();
+      if (value) {
+        const currentLinks = this.form.get('links')?.value || [];
+        this.form.get('links')?.setValue([...currentLinks, value]);
+        input.value = '';
+      }
+      event.preventDefault();
+    }
+
+    removeLink(linkToRemove: string) {
+      const currentLinks = this.form.get('links')?.value || [];
+      this.form.get('links')?.setValue(currentLinks.filter((link: string) => link !== linkToRemove));
+    }
+
     onSubmit() {
         let id = this.router.url.split('/')[2];
         if (this.form.valid) {
@@ -76,7 +54,7 @@ export class AddTask {
             links: this.form.value.links,
             tasksId: id
         }
-        this.http.post<any>('http://localhost:3000/task/addtask', payload, { withCredentials: true }).subscribe({
+        this.http.post<any>('https://taskshare-1d4b.onrender.com/task/addtask', payload, { withCredentials: true }).subscribe({
             next: (res) => {
                 console.log(res);
             },
@@ -86,6 +64,5 @@ export class AddTask {
         })
 
     }
-    protected readonly min = new TuiDay(2017, 0, 21);
-    protected readonly max = new TuiDay(2017, 0, 28);
+
 }

@@ -4,21 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User } from '../../services/user'
 import { CookieService } from 'ngx-cookie-service';
-import { TuiTextfieldComponent } from "@taiga-ui/core";
 import {AsyncPipe, NgIf} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {
-    TuiAppearance,
-    TuiButton,
-    TuiError,
-    TuiIcon,
-    TuiNotification,
-    TuiTextfield,
-    TuiTitle,
-} from '@taiga-ui/core';
-import {TuiFieldErrorPipe, TuiSegmented, TuiSwitch, TuiTooltip} from '@taiga-ui/kit';
-import {TuiCardLarge, TuiForm, TuiHeader} from '@taiga-ui/layout';
  
 
 interface ApiRes {
@@ -29,22 +17,9 @@ interface ApiRes {
     selector: 'app-login',
     standalone: true,
     imports: [FormsModule,
-      TuiTextfield,
-       AsyncPipe,
+      AsyncPipe,
         ReactiveFormsModule,
-        TuiAppearance,
-        TuiButton,
-        TuiCardLarge,
-        TuiError,
-        TuiFieldErrorPipe,
-        TuiForm,
-        TuiHeader,
-        TuiNotification,
-        TuiSegmented,
-        TuiSwitch,
-        TuiTextfield,
-        TuiTitle,
-        TuiTooltip
+
   ],
   providers: [CookieService],
   templateUrl: './login.html',
@@ -59,16 +34,13 @@ export class Login {
   constructor(private http: HttpClient, private userservice: User, private router: Router) {
 
   }
-  goToRegister() {
-
-  }
   onSubmit() {
     const payload = {
-      username: this.form.value.username,
+      username: this.form.value.username?.trim(),
       password: this.form.value.password
     };
-    console.log(payload)
-    this.http.post<ApiRes>('http://localhost:3000/auth/login', payload)
+    console.log('Login payload:', payload);
+    this.http.post<ApiRes>('https://taskshare-1d4b.onrender.com/auth/login', payload, { withCredentials: true })
       .subscribe({
         next: (response) => {
           console.log('API Response:', response);
@@ -80,6 +52,8 @@ export class Login {
         },
         error: (error) => {
           console.error('API Error:', error);
+          const errorMessage = error.error?.message || error.message || 'Login failed. Please check your credentials.';
+          alert(errorMessage);
         }
       });
   }

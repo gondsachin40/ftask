@@ -17,16 +17,15 @@
   max-width: 100%;
   display: flex;
   flex-direction: row;
-  overflow-x: auto; /* Use overflow-x for horizontal scrolling */
+  overflow-x: auto;
   background-color: var(--color-deep-black);
   padding: var(--spacing-md);
   gap: var(--spacing-md);
 }
 
-/* Adjust scrollbar for horizontal scrolling */
 .card-container::-webkit-scrollbar {
-  width: 8px; /* For vertical scrollbar */
-  height: 8px; /* For horizontal scrollbar */
+  width: 8px;
+  height: 8px;
 }
 
 .card-container::-webkit-scrollbar-thumb {
@@ -62,14 +61,12 @@
 
 .task-title {
   font-size: 26px;
-  /* bigger font */
   margin: 0 0 12px;
   color: var(--color-pure-white);
 }
 
 .task-desc {
   font-size: 18px;
-  /* bigger font */
   color: var(--color-pure-white);
   margin: var(--spacing-xs);
   text-transform: uppercase;
@@ -99,7 +96,6 @@
 
 .task-date {
   font-size: 16px;
-  /* bigger font */
   color: var(--color-pure-white);
   margin: 0;
   text-transform: uppercase;
@@ -172,29 +168,6 @@
   padding: var(--spacing-lg);
   align-items: center;
   width: 100%;
-}
-
-#formDiv > .custom-form {
-  border: 1px solid var(--color-light-grey);
-  border-radius: var(--border-radius-lg);
-  background-color: var(--color-medium-grey);
-  padding: var(--spacing-lg);
-  box-shadow: var(--shadow-inner-soft), var(--shadow-subtle);
-  width: 100%;
-  max-width: 32rem;
-}
-
-#formDiv .form-group {
-  margin-bottom: var(--spacing-md);
-}
-
-#formDiv label.custom-label {
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 0.8rem;
-  color: var(--color-pure-white);
-  display: block;
-  margin-bottom: var(--spacing-xs);
 }
 
 #formDiv .formInput {

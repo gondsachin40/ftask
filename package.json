@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "angular-http-server -p $PORT -H 0.0.0.0 --path dist/ftask/browser",
-    "build": "ng build",
+    "build": "npx ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:dist": "angular-http-server -p 8080 -H 0.0.0.0 --path dist/ftask/browser"

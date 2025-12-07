@@ -1,0 +1,30 @@
+services:
+  # Frontend Angular Application
+  - type: web
+    name: ftask-frontend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+    # Note: After deployment, update FRONTEND_URL in backend service with the frontend URL
+
+  # Backend API Service
+  - type: web
+    name: ftask-backend
+    env: node
+    rootDir: TaskShare
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # IMPORTANT: Set these environment variables in Render dashboard after deployment
+      # - key: MONGODB_URI
+      #   value: your_mongodb_connection_string
+      # - key: JWT_SECRET
+      #   value: your_jwt_secret
+      # - key: FRONTEND_URL
+      #   value: https://your-frontend-url.onrender.com
+

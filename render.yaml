@@ -27,4 +27,3 @@ services:
       #   value: your_jwt_secret
       # - key: FRONTEND_URL
       #   value: https://your-frontend-url.onrender.com
-

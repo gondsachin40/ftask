@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User } from '../../services/user'
 import { CookieService } from 'ngx-cookie-service';
-import {AsyncPipe, NgIf} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 
@@ -13,9 +12,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
   selector: 'app-register',
   standalone: true,
   imports: [FormsModule,
-       AsyncPipe,
         ReactiveFormsModule,
-
   ],
   templateUrl: './register.html',
   styleUrl: './register.css'

@@ -1,7 +1,6 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { JsonPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
@@ -24,10 +23,7 @@ interface EditTaskApiRes {
   selector: 'edit-task',
   imports: [
     JsonPipe,
-    AsyncPipe,
-    NgIf,
     ReactiveFormsModule,
-
   ],
   templateUrl: './edit-task.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

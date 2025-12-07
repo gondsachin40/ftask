@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "angular-http-server -p $PORT -H 0.0.0.0 --path dist/ftask/browser",
-    "build": "npx ng build",
+    "start": "node server.js",
+    "build": "npx ng build --configuration production",
+    "build:fast": "npx ng build --configuration development",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:dist": "angular-http-server -p 8080 -H 0.0.0.0 --path dist/ftask/browser"
@@ -19,6 +20,8 @@
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
     "angular-http-server": "^1.12.0",
+    "express": "^4.18.2",
+    "firebase": "^12.6.0",
     "ngx-cookie-service": "^20.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
